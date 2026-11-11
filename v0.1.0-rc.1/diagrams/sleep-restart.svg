@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1030" viewBox="0 0 1200 1030" role="img" aria-labelledby="sleep-restart-title sleep-restart-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="sleep-restart-title">Sleep, wake and restart</title>
+<desc id="sleep-restart-desc">Two columns: Sleep() with the outputs off or held, and the wake that clears SLEEP, waits for the oscillator, checks MODE1, MODE2 and PRE_SCALE, then writes RESTART and checks again; a band below says what a failed check leaves.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1029" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">API GUIDE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Sleep, wake and restart</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">MODE1 is written from the driver's copy only after a read that proves the chip did not reset, and every write that clears SLEEP is followed by the wake</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">check.</text>
+<rect x="32" y="141.6" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M301 232.6 L301 264.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M301 360.6 L301 392.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M301 469.6 L301 501.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M301 578.5 L301 610.5" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M899 232.6 L899 264.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M899 341.6 L899 373.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M899 469.6 L899 501.6" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M899 597.5 L899 629.5" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M899 725.5 L899 757.5" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="159.6" width="538" height="69" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="32" y="167.6" width="4" height="53" rx="2" fill="#0B7A72"/>
+<rect x="32" y="268.6" width="538" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="276.6" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="32" y="396.6" width="538" height="69" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="404.6" width="4" height="53" rx="2" fill="#2563EB"/>
+<rect x="32" y="505.6" width="538" height="69" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="513.5" width="4" height="53" rx="2" fill="#2563EB"/>
+<rect x="32" y="614.5" width="538" height="107" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="32" y="622.5" width="4" height="91" rx="2" fill="#C26A05"/>
+<rect x="630" y="159.6" width="538" height="69" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="630" y="167.6" width="4" height="53" rx="2" fill="#0B7A72"/>
+<rect x="630" y="268.6" width="538" height="69" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="630" y="276.6" width="4" height="53" rx="2" fill="#2563EB"/>
+<rect x="630" y="377.6" width="538" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="630" y="385.6" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="630" y="505.6" width="538" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="630" y="513.5" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="630" y="633.5" width="538" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="630" y="641.5" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="630" y="761.5" width="538" height="88" rx="10" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="630" y="769.5" width="4" height="72" rx="2" fill="#15803D"/>
+<rect x="32" y="889.5" width="1136" height="79.3" rx="10" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="52" y="186.3" font-size="15" font-weight="700" fill="#0B5F59">Sleep(mode)</text>
+<text x="52" y="211.2" font-size="13" fill="#2B3442">OutputsOff (default) or HoldOutputs</text>
+<text x="52" y="295.3" font-size="15" font-weight="700" fill="#1E429F">OutputsOff: every channel off</text>
+<text x="52" y="320.1" font-size="13" fill="#2B3442">ALL_LED_OFF_H: nothing left to hold</text>
+<text x="52" y="339" font-size="13" fill="#2B3442">if that write fails: no sleep</text>
+<text x="52" y="423.3" font-size="15" font-weight="700" fill="#1E429F">Reset check</text>
+<text x="52" y="448.2" font-size="13" fill="#2B3442">read MODE1, MODE2, SUBADR1: as the copy? twice to act</text>
+<text x="52" y="532.3" font-size="15" font-weight="700" fill="#1E429F">MODE1.SLEEP = 1 (0x10)</text>
+<text x="52" y="557.2" font-size="13" fill="#2B3442">the oscillator stops</text>
+<text x="52" y="641.3" font-size="15" font-weight="700" fill="#8A3C0B">Asleep</text>
+<text x="52" y="666.2" font-size="13" fill="#2B3442">OutputsOff: every output off, RESTART clear</text>
+<text x="52" y="685" font-size="13" fill="#2B3442">HoldOutputs: RESTART set; an output may hold its level, so a switch-off</text>
+<text x="52" y="703.9" font-size="13" fill="#2B3442">returns Asleep</text>
+<text x="650" y="186.3" font-size="15" font-weight="700" fill="#0B5F59">Wake()</text>
+<text x="650" y="211.2" font-size="13" fill="#2B3442">also the end of SetPwmFrequency()</text>
+<text x="650" y="295.3" font-size="15" font-weight="700" fill="#1E429F">Reset check</text>
+<text x="650" y="320.1" font-size="13" fill="#2B3442">read MODE1, MODE2, SUBADR1 (section 7.3.1.1, step 1)</text>
+<text x="650" y="404.3" font-size="15" font-weight="700" fill="#1E429F">MODE1.SLEEP = 0, wait 500 us</text>
+<text x="650" y="429.2" font-size="13" fill="#2B3442">the oscillator start-up (table 5, note 2)</text>
+<text x="650" y="448" font-size="13" fill="#2B3442">the wake check is pending from here</text>
+<text x="650" y="532.3" font-size="15" font-weight="700" fill="#1E429F">Wake check</text>
+<text x="650" y="557.2" font-size="13" fill="#2B3442">read MODE1, MODE2, SUBADR1, PRE_SCALE: as the copy?</text>
+<text x="650" y="576" font-size="13" fill="#2B3442">differs twice: DeviceReset</text>
+<text x="650" y="660.3" font-size="15" font-weight="700" fill="#1E429F">RESTART reads 1: write it as 1 (0x80)</text>
+<text x="650" y="685.2" font-size="13" fill="#2B3442">the channels that ran restart</text>
+<text x="650" y="704" font-size="13" fill="#2B3442">it clears SLEEP too: the wake check once more</text>
+<text x="650" y="788.3" font-size="15" font-weight="700" fill="#14532D">Running</text>
+<text x="650" y="813.2" font-size="13" fill="#2B3442">the chip holds the driver's MODE2 and prescaler</text>
+<text x="650" y="832" font-size="13" fill="#2B3442">no output held</text>
+<text x="46" y="916.3" font-size="15" font-weight="700" fill="#334155">When a check fails</text>
+<text x="46" y="934.1" font-size="13" fill="#334155">A wake check that fails (a bus error) stays pending: the next call runs it first and a switch-on is refused until it passes. A switch-off is still sent. Only an acknowledged</text>
+<text x="46" y="953" font-size="13" fill="#334155">wake write followed by a check that reads SLEEP = 0 clears the doubt that an output is held; Wake() leaves Asleep for Running.</text>
+<rect x="32" y="984.3" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="54" y="995.9" font-size="12.5" fill="#566070">your call</text>
+<rect x="131.4" y="984.3" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="153.4" y="995.9" font-size="12.5" fill="#566070">driver steps</text>
+<rect x="251.7" y="984.3" width="14" height="14" rx="4" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<text x="273.7" y="995.9" font-size="12.5" fill="#566070">outputs may hold</text>
+<rect x="406.2" y="984.3" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="428.2" y="995.9" font-size="12.5" fill="#566070">running</text>
+<path d="M499.8 990.5L529.8 990.5" fill="none" stroke="#8893A2" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="543.8" y="995.9" font-size="12.5" fill="#566070">next step</text>
+</svg>
