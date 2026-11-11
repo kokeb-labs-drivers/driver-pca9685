@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="728" viewBox="0 0 1200 728" role="img" aria-labelledby="channel-write-title channel-write-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="channel-write-title">One channel write and its outcomes</title>
+<desc id="channel-write-desc">A row of five bytes, the control register LEDn_ON_L then ON_L, ON_H, OFF_L, OFF_H, applied at the STOP; below, three outcome cards: acknowledged, NACK part-way, address NACK; at the bottom the one-byte switch-off.</desc>
+<defs><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60A5FA"/></marker><marker id="fk-arrow-green-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4ADE80"/></marker><marker id="fk-arrow-rose-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FB7185"/></marker><marker id="fk-arrow-slate-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94A3B8"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="727" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">ARCHITECTURE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">One channel write and its outcomes</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Channel n's registers start at 0x06 + 4 x n. A switch-on sends all four in one transfer; a switch-off sends one byte.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<path d="M140 229.8 L140 261.8" fill="none" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)"/>
+<path d="M370 229.8 L370 261.8" fill="none" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)"/>
+<path d="M600 229.8 L600 261.8" fill="none" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)"/>
+<path d="M830 229.8 L830 261.8" fill="none" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)"/>
+<path d="M1060 229.8 L1060 261.8" fill="none" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)"/>
+<path d="M213.3 338.8 L213.3 380.8" fill="none" stroke="#4ADE80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-green-strong)"/>
+<path d="M600 338.8 L600 380.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M986.7 338.8 L986.7 380.8" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-slate-strong)"/>
+<rect x="32" y="137.8" width="216" height="88" rx="10" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="145.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="262" y="137.8" width="216" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="262" y="145.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="492" y="137.8" width="216" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="492" y="145.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="722" y="137.8" width="216" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="722" y="145.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="952" y="137.8" width="216" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="952" y="145.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="32" y="265.8" width="1136" height="69" rx="10" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="273.8" width="4" height="53" rx="2" fill="#60A5FA"/>
+<rect x="32" y="384.8" width="362.7" height="144" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="32" y="392.8" width="4" height="128" rx="2" fill="#4ADE80"/>
+<rect x="418.7" y="384.8" width="362.7" height="144" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="418.7" y="392.8" width="4" height="128" rx="2" fill="#FB7185"/>
+<rect x="805.3" y="384.8" width="362.7" height="144" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="805.3" y="392.8" width="4" height="128" rx="2" fill="#94A3B8"/>
+<rect x="32" y="568.8" width="1136" height="98.2" rx="10" fill="#11281A" stroke="#285A3A" stroke-width="1"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#E8EDF3">Control register</text>
+<text x="52" y="189.4" font-size="13" fill="#D2DAE4">LEDn_ON_L address</text>
+<text x="282" y="164.6" font-size="15" font-weight="700" fill="#BFDBFE">ON_L</text>
+<text x="282" y="189.4" font-size="13" fill="#D2DAE4">ON count 7..0</text>
+<text x="512" y="164.6" font-size="15" font-weight="700" fill="#BFDBFE">ON_H</text>
+<text x="512" y="189.4" font-size="13" fill="#D2DAE4">bit 4 full ON (0x10), count</text>
+<text x="512" y="208.2" font-size="13" fill="#D2DAE4">11..8</text>
+<text x="742" y="164.6" font-size="15" font-weight="700" fill="#BFDBFE">OFF_L</text>
+<text x="742" y="189.4" font-size="13" fill="#D2DAE4">OFF count 7..0</text>
+<text x="972" y="164.6" font-size="15" font-weight="700" fill="#BFDBFE">OFF_H</text>
+<text x="972" y="189.4" font-size="13" fill="#D2DAE4">bit 4 full OFF (0x10), count</text>
+<text x="972" y="208.2" font-size="13" fill="#D2DAE4">11..8</text>
+<text x="52" y="292.6" font-size="15" font-weight="700" fill="#E8EDF3">STOP: the four registers reach the output together (MODE2.OCH = 0)</text>
+<text x="52" y="317.4" font-size="13" fill="#D2DAE4">a switch-on waits for a passing wake check</text>
+<text x="52" y="411.6" font-size="15" font-weight="700" fill="#BBF7D0">Acknowledged: Ok</text>
+<text x="52" y="436.4" font-size="13" fill="#D2DAE4">the copy takes the value</text>
+<text x="52" y="455.3" font-size="13" fill="#D2DAE4">GetChannel() returns it</text>
+<text x="438.7" y="411.6" font-size="15" font-weight="700" fill="#FECDD3">NACK part-way: Bus</text>
+<text x="438.7" y="436.4" font-size="13" fill="#D2DAE4">the bytes before the NACK are stored and applied</text>
+<text x="438.7" y="455.3" font-size="13" fill="#D2DAE4">at the STOP</text>
+<text x="438.7" y="474.1" font-size="13" fill="#D2DAE4">the channel is unknown until a write or a read</text>
+<text x="438.7" y="493" font-size="13" fill="#D2DAE4">succeeds</text>
+<text x="438.7" y="511.8" font-size="13" fill="#D2DAE4">EnableOutputs() refuses meanwhile</text>
+<text x="825.3" y="411.6" font-size="15" font-weight="700" fill="#E2E8F0">Address NACK: NoDevice</text>
+<text x="825.3" y="436.4" font-size="13" fill="#D2DAE4">nothing arrived</text>
+<text x="825.3" y="455.3" font-size="13" fill="#D2DAE4">the copy is kept, nothing unknown</text>
+<text x="825.3" y="474.1" font-size="13" fill="#D2DAE4">needs the port's GetLastFailure()</text>
+<text x="46" y="595.5" font-size="15" font-weight="700" fill="#BBF7D0">Switch-off</text>
+<text x="46" y="613.4" font-size="13" fill="#BBF7D0">A switch-off is one data byte: LEDn_OFF_H (control register 0x06 + 4 x n + 3) = 0x10, or ALL_LED_OFF_H = 0x10 for every channel. It is stored or it is not, and full OFF</text>
+<text x="46" y="632.2" font-size="13" fill="#BBF7D0">takes precedence over the other bytes, so even a failed switch-off never makes a channel more active. It is sent whatever the driver doubts, and once started also after a</text>
+<text x="46" y="651" font-size="13" fill="#BBF7D0">reset was found.</text>
+<rect x="32" y="682.4" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="54" y="694" font-size="12.5" fill="#9AA6B5">bytes on the bus</text>
+<rect x="182.4" y="682.4" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="204.4" y="694" font-size="12.5" fill="#9AA6B5">Ok</text>
+<rect x="245.8" y="682.4" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="267.8" y="694" font-size="12.5" fill="#9AA6B5">Bus</text>
+<rect x="315.3" y="682.4" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="337.3" y="694" font-size="12.5" fill="#9AA6B5">NoDevice</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="599" viewBox="0 0 1200 599" role="img" aria-labelledby="output-path-title output-path-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="output-path-title">From the registers to the pin</title>
+<desc id="output-path-desc">Five stages left to right: full OFF, full ON and the counter decide the channel logic; sleep freezes it; INVRT and OUTDRV set the pin level; OE high replaces it with the OUTNE level; a table gives the off level per configuration.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="598" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">From the registers to the pin</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">OE high always gives the level of a channel that is off: the driver chooses OUTNE for that.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M294.5 209.8 L320.5 209.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M587 209.8 L613 209.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M879.5 209.8 L905.5 209.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="137.8" width="258.5" height="144" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="145.8" width="4" height="128" rx="2" fill="#2563EB"/>
+<rect x="324.5" y="137.8" width="258.5" height="144" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="324.5" y="145.8" width="4" height="128" rx="2" fill="#C26A05"/>
+<rect x="617" y="137.8" width="258.5" height="144" rx="10" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<rect x="617" y="145.8" width="4" height="128" rx="2" fill="#7C3AED"/>
+<rect x="909.5" y="137.8" width="258.5" height="144" rx="10" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="909.5" y="145.8" width="4" height="128" rx="2" fill="#DB2752"/>
+<rect x="32" y="331.8" width="409" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="339.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="453" y="331.8" width="204.5" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="453" y="339.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="669.4" y="331.8" width="136.3" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="669.4" y="339.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="817.8" y="331.8" width="350.2" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="817.8" y="339.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="32" y="385.8" width="409" height="44" rx="10" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<rect x="32" y="393.8" width="4" height="28" rx="2" fill="#7C3AED"/>
+<rect x="453" y="385.8" width="204.5" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="453" y="393.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="669.4" y="385.8" width="136.3" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="669.4" y="393.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="817.8" y="385.8" width="350.2" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="817.8" y="393.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="32" y="439.8" width="409" height="44" rx="10" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<rect x="32" y="447.8" width="4" height="28" rx="2" fill="#7C3AED"/>
+<rect x="453" y="439.8" width="204.5" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="453" y="447.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="669.4" y="439.8" width="136.3" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="669.4" y="447.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="817.8" y="439.8" width="350.2" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="817.8" y="447.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="32" y="493.8" width="409" height="44" rx="10" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<rect x="32" y="501.8" width="4" height="28" rx="2" fill="#7C3AED"/>
+<rect x="453" y="493.8" width="204.5" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="453" y="501.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="669.4" y="493.8" width="136.3" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="669.4" y="501.8" width="4" height="28" rx="2" fill="#64748B"/>
+<rect x="817.8" y="493.8" width="350.2" height="44" rx="10" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="817.8" y="501.8" width="4" height="28" rx="2" fill="#64748B"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#1E429F">Channel logic</text>
+<text x="52" y="189.4" font-size="13" fill="#2B3442">LEDn_OFF_H bit 4: off, whatever</text>
+<text x="52" y="208.2" font-size="13" fill="#2B3442">else</text>
+<text x="52" y="227.1" font-size="13" fill="#2B3442">LEDn_ON_H bit 4: on</text>
+<text x="52" y="245.9" font-size="13" fill="#2B3442">else on from the ON count to the</text>
+<text x="52" y="264.8" font-size="13" fill="#2B3442">OFF count</text>
+<text x="344.5" y="164.6" font-size="15" font-weight="700" fill="#8A3C0B">Asleep?</text>
+<text x="344.5" y="189.4" font-size="13" fill="#2B3442">oscillator off: an output is neither</text>
+<text x="344.5" y="208.2" font-size="13" fill="#2B3442">switched on nor off</text>
+<text x="344.5" y="227.1" font-size="13" fill="#2B3442">it may hold its level (not specified)</text>
+<text x="637" y="164.6" font-size="15" font-weight="700" fill="#5B21B6">INVRT and OUTDRV</text>
+<text x="637" y="189.4" font-size="13" fill="#2B3442">INVRT = 1 inverts (OE low only)</text>
+<text x="637" y="208.2" font-size="13" fill="#2B3442">high: driven (totem pole) or</text>
+<text x="637" y="227.1" font-size="13" fill="#2B3442">high impedance (open drain)</text>
+<text x="929.5" y="164.6" font-size="15" font-weight="700" fill="#9F1239">OE pin</text>
+<text x="929.5" y="189.4" font-size="13" fill="#2B3442">low: the level from the left</text>
+<text x="929.5" y="208.2" font-size="13" fill="#2B3442">high: the OUTNE level, within 60</text>
+<text x="929.5" y="227.1" font-size="13" fill="#2B3442">ns</text>
+<text x="52" y="358.6" font-size="15" font-weight="700" fill="#0E1726">Configuration</text>
+<text x="473" y="358.6" font-size="15" font-weight="700" fill="#0E1726">Channel off at the pin</text>
+<text x="689.4" y="358.6" font-size="15" font-weight="700" fill="#0E1726">OUTNE</text>
+<text x="837.8" y="358.6" font-size="15" font-weight="700" fill="#0E1726">Reset state off?</text>
+<text x="52" y="412.6" font-size="15" font-weight="700" fill="#5B21B6">Not inverted (Config{}, ServoPreset())</text>
+<text x="473" y="412.6" font-size="15" font-weight="700" fill="#0E1726">low</text>
+<text x="689.4" y="412.6" font-size="15" font-weight="700" fill="#0E1726">00</text>
+<text x="837.8" y="412.6" font-size="15" font-weight="700" fill="#0E1726">yes: off for an active-high load</text>
+<text x="52" y="466.6" font-size="15" font-weight="700" fill="#5B21B6">Inverted, totem pole (P-type driver)</text>
+<text x="473" y="466.6" font-size="15" font-weight="700" fill="#0E1726">high</text>
+<text x="689.4" y="466.6" font-size="15" font-weight="700" fill="#0E1726">01</text>
+<text x="837.8" y="466.6" font-size="15" font-weight="700" fill="#0E1726">no: low turns the load on</text>
+<text x="52" y="520.5" font-size="15" font-weight="700" fill="#5B21B6">Inverted, open drain (DirectLedPreset())</text>
+<text x="473" y="520.5" font-size="15" font-weight="700" fill="#0E1726">high impedance</text>
+<text x="689.4" y="520.5" font-size="15" font-weight="700" fill="#0E1726">10</text>
+<text x="837.8" y="520.5" font-size="15" font-weight="700" fill="#0E1726">no: low lights the LED</text>
+<rect x="32" y="553.2" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="54" y="564.8" font-size="12.5" fill="#566070">channel logic</text>
+<rect x="161.2" y="553.2" width="14" height="14" rx="4" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<text x="183.2" y="564.8" font-size="12.5" fill="#566070">asleep</text>
+<rect x="248.4" y="553.2" width="14" height="14" rx="4" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<text x="270.4" y="564.8" font-size="12.5" fill="#566070">output stage</text>
+<rect x="373.2" y="553.2" width="14" height="14" rx="4" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<text x="395.2" y="564.8" font-size="12.5" fill="#566070">OE</text>
+</svg>

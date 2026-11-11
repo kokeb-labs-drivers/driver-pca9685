@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1071" viewBox="0 0 1200 1071" role="img" aria-labelledby="start-up-title start-up-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="start-up-title">What EnsureInitialized() does</title>
+<desc id="start-up-desc">Flow chart of EnsureInitialized(): check the configuration and the address, bring the bus up, switch every output off, sleep and write PRE_SCALE, read everything back as the identity check, wake the oscillator and check the wake, enable OE; each failing step returns its error.</desc>
+<defs><marker id="fk-arrow-green-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4ADE80"/></marker><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker><marker id="fk-arrow-rose-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FB7185"/></marker><marker id="fk-arrow-slate-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94A3B8"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1070" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">CONTRACT</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">What EnsureInitialized() does</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Every output off first, whatever an earlier run left. A failed call leaves the driver uninitialised, and the next call starts again at the top.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<path d="M676 172.3 L768 172.3" fill="none" stroke="#4ADE80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-green-strong)"/>
+<path d="M352 210.8 L352 248.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 287.3 L768 287.3" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-slate-strong)"/>
+<path d="M352 325.8 L352 363.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 430.3 L768 430.3" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 496.8 L352 534.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 582.8 L768 582.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 630.8 L352 668.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 716.8 L768 716.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 764.8 L352 802.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 850.8 L768 850.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 898.8 L352 936.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="137.8" width="640" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="145.8" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="772" y="137.8" width="396" height="69" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="772" y="145.8" width="4" height="53" rx="2" fill="#4ADE80"/>
+<rect x="32" y="252.8" width="640" height="69" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="260.8" width="4" height="53" rx="2" fill="#60A5FA"/>
+<rect x="772" y="252.8" width="396" height="69" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="772" y="260.8" width="4" height="53" rx="2" fill="#94A3B8"/>
+<rect x="32" y="367.8" width="640" height="125" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="375.8" width="4" height="109" rx="2" fill="#60A5FA"/>
+<rect x="772" y="395.8" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="403.8" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="538.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="546.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="510.3" width="396" height="145" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="518.3" width="4" height="129" rx="2" fill="#FB7185"/>
+<rect x="32" y="672.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="680.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="682.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="690.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="806.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="814.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="816.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="824.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="940.8" width="640" height="69" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="32" y="948.8" width="4" height="53" rx="2" fill="#4ADE80"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#A7F3E6">EnsureInitialized()</text>
+<text x="52" y="189.4" font-size="13" fill="#D2DAE4">started already?</text>
+<text x="792" y="164.6" font-size="15" font-weight="700" fill="#BBF7D0">Ok, or the start-up again</text>
+<text x="792" y="189.4" font-size="13" fill="#D2DAE4">the reset check: one read; a reset found: from step 1</text>
+<rect x="705.2" y="162.3" width="33.6" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="176.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">yes</text>
+<text x="52" y="279.6" font-size="15" font-weight="700" fill="#BFDBFE">Check the configuration and the address</text>
+<text x="52" y="304.4" font-size="13" fill="#D2DAE4">Validate(config); address 0x40 to 0x7F, not 0x70 (LED All Call)</text>
+<rect x="338.3" y="219.8" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="234.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="792" y="279.6" font-size="15" font-weight="700" fill="#E2E8F0">InvalidArgument</text>
+<text x="792" y="304.4" font-size="13" fill="#D2DAE4">nothing sent</text>
+<rect x="704.5" y="277.3" width="35" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="291.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">bad</text>
+<text x="52" y="394.6" font-size="15" font-weight="700" fill="#BFDBFE">1  Every output off, from any state</text>
+<text x="52" y="419.4" font-size="13" fill="#D2DAE4">OE high (with GpioSet())</text>
+<text x="52" y="438.3" font-size="13" fill="#D2DAE4">ALL_LED_OFF_H (0xFD) = 0x10: one byte, whatever AI holds</text>
+<text x="52" y="457.1" font-size="13" fill="#D2DAE4">MODE2: OCH = 0, the drive, the inversion, OUTNE = the off level</text>
+<text x="52" y="476" font-size="13" fill="#D2DAE4">ALL_LED_OFF_H = 0x10 again, now applied at the STOP</text>
+<text x="792" y="422.6" font-size="15" font-weight="700" fill="#FECDD3">Bus or NoDevice</text>
+<text x="792" y="447.4" font-size="13" fill="#D2DAE4">after all four were sent</text>
+<rect x="703.3" y="420.3" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="434.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="565.5" font-size="15" font-weight="700" fill="#BFDBFE">2  Sleep and set the frequency</text>
+<text x="52" y="590.4" font-size="13" fill="#D2DAE4">read MODE1; SLEEP and AI; EXTCLK by two writes when asked</text>
+<text x="52" y="609.2" font-size="13" fill="#D2DAE4">PRE_SCALE (it takes a write only asleep); SUBADR1 = the reset sentinel</text>
+<text x="792" y="537" font-size="15" font-weight="700" fill="#FECDD3">DeviceIdMismatch or ExternalClockLatched or</text>
+<text x="792" y="556.5" font-size="15" font-weight="700" fill="#FECDD3">Bus</text>
+<text x="792" y="581.4" font-size="13" fill="#D2DAE4">ExternalClockLatched: EXTCLK set, internal clock</text>
+<text x="792" y="600.2" font-size="13" fill="#D2DAE4">asked</text>
+<text x="792" y="619.1" font-size="13" fill="#D2DAE4">DeviceIdMismatch: MODE1 and the next byte cannot be</text>
+<text x="792" y="638" font-size="13" fill="#D2DAE4">a PCA9685</text>
+<rect x="703.3" y="572.8" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="587.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="699.5" font-size="15" font-weight="700" fill="#BFDBFE">3  Identity: read everything back</text>
+<text x="52" y="724.4" font-size="13" fill="#D2DAE4">MODE1, MODE2, SUBADR1 and PRE_SCALE as written</text>
+<text x="52" y="743.2" font-size="13" fill="#D2DAE4">all 16 channels full OFF (one 64-byte read)</text>
+<text x="792" y="709" font-size="15" font-weight="700" fill="#FECDD3">DeviceIdMismatch</text>
+<text x="792" y="733.9" font-size="13" fill="#D2DAE4">another part, or a floating or stuck line</text>
+<rect x="696" y="706.8" width="52" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="721.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">differs</text>
+<text x="52" y="833.5" font-size="15" font-weight="700" fill="#BFDBFE">4  Wake and check the wake</text>
+<text x="52" y="858.4" font-size="13" fill="#D2DAE4">MODE1.SLEEP = 0, wait 500 us</text>
+<text x="52" y="877.2" font-size="13" fill="#D2DAE4">read MODE1, MODE2, SUBADR1, PRE_SCALE; OE low</text>
+<text x="792" y="843" font-size="15" font-weight="700" fill="#FECDD3">DeviceReset or WriteMismatch</text>
+<text x="792" y="867.9" font-size="13" fill="#D2DAE4">the chip reset, or did not wake</text>
+<rect x="703.3" y="840.8" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="855.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="967.5" font-size="15" font-weight="700" fill="#BBF7D0">Started: Ok</text>
+<text x="52" y="992.4" font-size="13" fill="#D2DAE4">every channel off, the chip running the configuration</text>
+<rect x="318.6" y="907.8" width="66.9" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="922.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">all match</text>
+<rect x="32" y="1025.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="54" y="1036.8" font-size="12.5" fill="#9AA6B5">your call</text>
+<rect x="131.4" y="1025.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="153.4" y="1036.8" font-size="12.5" fill="#9AA6B5">driver steps</text>
+<rect x="251.7" y="1025.2" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="273.7" y="1036.8" font-size="12.5" fill="#9AA6B5">fails, nothing sent</text>
+<rect x="408.7" y="1025.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="430.7" y="1036.8" font-size="12.5" fill="#9AA6B5">fails</text>
+<rect x="480.5" y="1025.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="502.5" y="1036.8" font-size="12.5" fill="#9AA6B5">Ok</text>
+<path d="M543.9 1031.4L573.9 1031.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="587.9" y="1036.8" font-size="12.5" fill="#9AA6B5">next step</text>
+</svg>
