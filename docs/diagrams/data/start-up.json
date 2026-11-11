@@ -1,0 +1,22 @@
+{
+  "address": [
+    "0x40",
+    "0x7F",
+    "0x70"
+  ],
+  "all_off": [
+    "0xFD",
+    "0x10"
+  ],
+  "start_us": 500,
+  "clock_errors": [
+    "DeviceIdMismatch",
+    "ExternalClockLatched"
+  ],
+  "identity_error": "DeviceIdMismatch",
+  "sources": [
+    "src/pca9685.ipp:EnsureInitialized, initialize, enterSafeState, configureClock, checkIdentity, wakeSequence, addressValid",
+    "inc/pca9685_types.hpp:kMinI2cAddress, kMaxI2cAddress, kAllCallAddress, kOscillatorStartUs",
+    "inc/pca9685_registers.hpp:kAllLedOffH, kLedFull"
+  ]
+}

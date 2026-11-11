@@ -1,0 +1,155 @@
+---
+# The vendor documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a PDF: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision. `pdf` is a stable direct link when the vendor publishes one (page links are built from it, adding
+# `page_offset` when the printed page numbers differ from the PDF's); otherwise readers download from `url`.
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+#
+# The NXP PCA9685 product data sheet, Rev. 4, is the only source of the driver's behaviour. Its printed page
+# numbers match the PDF's pages.
+documents:
+  - id: pca9685
+    vendor: NXP
+    title: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller
+    kind: Datasheet
+    number: PCA9685
+    revision: Rev. 4
+    date: 2015-04-16
+    url: https://www.nxp.com/products/PCA9685
+    pdf: https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
+    page_offset: 0
+    sha256: 237d47f339cac4c3a0d56a5f0b4d3c93df71e3eb43f36ac57ea4ff38e6b2e585
+
+# One row per thing the driver takes from the document: the data sheet's own section names and printed page
+# numbers, the driver API that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: Pins and packages (TSSOP28, HVQFN28)
+    doc: pca9685
+    section: 6 Pinning information; Table 3 Pin description
+    page: 6
+    driver: "`CtrlPin::OutputEnable`"
+    docs: [hardware, quickstart]
+  - topic: Slave address, A0 to A5
+    doc: pca9685
+    section: 7.1.1 Regular I2C-bus slave address; Figure 4
+    page: 7
+    driver: "`kI2cAddress`, `kMinI2cAddress`, `kMaxI2cAddress`, `Error::InvalidArgument`"
+    docs: [hardware, porting, troubleshooting]
+  - topic: LED All Call and Sub Call addresses
+    doc: pca9685
+    section: 7.1.2 LED All Call I2C-bus address; 7.1.3 LED Sub Call I2C-bus addresses
+    page: 8
+    driver: "`kAllCallAddress`, MODE1.ALLCALL and SUB1 to SUB3 cleared by `EnsureInitialized()`"
+    docs: [hardware, contract]
+  - topic: Software Reset address
+    doc: pca9685
+    section: 7.1.4 Software Reset I2C-bus address
+    page: 9
+    driver: "(not sent by the driver; its effect is found by `CheckForReset()`)"
+    docs: [hardware]
+  - topic: Software reset by the general call
+    doc: pca9685
+    section: 7.6 Software reset
+    page: 28
+    driver: "`CheckForReset()`, `Error::DeviceReset`"
+    docs: [contract, troubleshooting]
+  - topic: Control register
+    doc: pca9685
+    section: 7.2 Control register
+    page: 9
+    driver: "`pca9685::reg` (`inc/pca9685_registers.hpp`)"
+    docs: [architecture]
+  - topic: Register summary and auto-increment
+    doc: pca9685
+    section: Table 4 Register summary
+    page: 10
+    driver: "`pca9685::reg`, MODE1.AI set by `EnsureInitialized()`, bursts of up to 64 bytes"
+    docs: [architecture, contract]
+  - topic: SUBADR1, the reset sentinel
+    doc: pca9685
+    section: 7.3.6 SUBADR1 to SUBADR3; Table 9
+    page: 26
+    driver: "`detail::kSubAdr1Sentinel`, written by `EnsureInitialized()`, read by every reset check"
+    docs: [contract]
+  - topic: MODE1, sleep, EXTCLK and the oscillator start-up
+    doc: pca9685
+    section: 7.3.1 Mode register 1, MODE1; Table 5
+    page: 14
+    driver: "`EnsureInitialized()`, `Sleep()`, `Wake()`, `kOscillatorStartUs`, `Config::clock`,
+      `Error::ExternalClockLatched`"
+    docs: [api-guide, configuration, contract]
+  - topic: Restart mode
+    doc: pca9685
+    section: 7.3.1.1 Restart mode
+    page: 15
+    driver: "`Sleep(SleepMode::HoldOutputs)`, `Wake()`, `SetPwmFrequency()`, `Error::Asleep`"
+    docs: [api-guide, contract]
+  - topic: MODE2, output drive, inversion, change on STOP, OUTNE
+    doc: pca9685
+    section: 7.3.2 Mode register 2, MODE2; Table 6
+    page: 16
+    driver: "`Config::output_drive`, `Config::invert_outputs`, `detail::Mode2Value()`"
+    docs: [configuration, hardware, contract]
+  - topic: LED output and PWM control, full ON and full OFF
+    doc: pca9685
+    section: 7.3.3 LED output and PWM control; Table 7; Figure 9
+    page: 16
+    driver: "`Pwm`, `PwmForDuty()`, `SetPwm()`, `SetDuty()`, `SetFullOn()`, `SetChannelOff()`, `SetChannels()`"
+    docs: [api-guide, architecture]
+  - topic: ALL_LED registers and the orderly shutdown
+    doc: pca9685
+    section: 7.3.4 ALL_LED_ON and ALL_LED_OFF control; Table 8
+    page: 25
+    driver: "`SetAllOff()`, `Sleep(SleepMode::OutputsOff)`, `EnsureInitialized()`, `Deinitialize()`"
+    docs: [api-guide, contract]
+  - topic: PWM frequency, PRE_SCALE
+    doc: pca9685
+    section: 7.3.5 PWM frequency PRE_SCALE; Equation 1
+    page: 25
+    driver: "`PrescaleFor()`, `FrequencyFor()`, `CountsForPulseUs()`, `SetPwmFrequency()`, `SetPulseWidthUs()`,
+      `Validate()`"
+    docs: [configuration, api-guide]
+  - topic: Output enable, OE
+    doc: pca9685
+    section: 7.4 Active LOW output enable input; Table 11
+    page: 27
+    driver: "`DisableOutputs()`, `EnableOutputs()`, `detail::OffLevelOutne()`"
+    docs: [hardware, porting, contract]
+  - topic: Power-on reset
+    doc: pca9685
+    section: 7.5 Power-on reset
+    page: 27
+    driver: "`CheckForReset()`, `Error::DeviceReset`, the reset sentinel MODE1.AI"
+    docs: [contract, troubleshooting]
+  - topic: External drivers, INVRT and OUTDRV
+    doc: pca9685
+    section: 7.7 Using the PCA9685 with and without external drivers; Table 12; Figures 13 to 15
+    page: 29
+    driver: "`DirectLedPreset()`, `ServoPreset()`, `Config::invert_outputs`, `Config::output_drive`"
+    docs: [hardware, configuration]
+  - topic: I2C bus transactions
+    doc: pca9685
+    section: 9 Bus transactions; Figures 20 to 24
+    page: 32
+    driver: "`I2cInterface`, `I2cPort`, `kRepeatedStart`, every register access"
+    docs: [porting, architecture]
+  - topic: Typical application
+    doc: pca9685
+    section: 10 Application design-in information; Figure 26
+    page: 35
+    driver: "-"
+    docs: [hardware]
+  - topic: Supply, power-on reset voltage and output currents
+    doc: pca9685
+    section: 11 Limiting values; 12 Static characteristics
+    page: 38
+    driver: "-"
+    docs: [hardware]
+  - topic: I2C timing, EXTCLK and OE propagation
+    doc: pca9685
+    section: 13 Dynamic characteristics; Table 15
+    page: 40
+    driver: "`kMaxClockHz`, `kMaxOscillatorHz`, `DisableOutputs()`"
+    docs: [hardware, porting]

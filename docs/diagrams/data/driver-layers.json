@@ -1,0 +1,44 @@
+{
+  "name": "pca9685",
+  "cls": "PCA9685",
+  "calls": [
+    "EnsureInitialized",
+    "Deinitialize",
+    "ApplyConfig",
+    "CheckForReset",
+    "SetPwm",
+    "SetDuty",
+    "SetPulseWidthUs",
+    "SetFullOn",
+    "SetChannelOff",
+    "SetChannels",
+    "SetChannelsOff",
+    "SetAllOff",
+    "GetChannel",
+    "ReadChannel",
+    "DisableOutputs",
+    "EnableOutputs",
+    "SetPwmFrequency",
+    "GetPrescale",
+    "GetPwmFrequencyHz",
+    "ReadPrescale",
+    "Sleep",
+    "Wake",
+    "ReadRegister"
+  ],
+  "sources": [
+    "inc/pca9685.hpp:public calls",
+    "inc/pca9685_i2c_interface.hpp:I2cInterface"
+  ],
+  "bus": "I2C",
+  "base": "I2cInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "Write",
+    "WriteRead",
+    "DelayUs",
+    "GpioSet",
+    "GetLastFailure",
+    "Log"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "start_us": 500,
+  "restart": "0x80",
+  "sleep": "0x10",
+  "sources": [
+    "src/pca9685.ipp:Sleep, Wake, wakeSequence, completeWakeCheck, verifyRunning, SetPwmFrequency, changePrescale",
+    "inc/pca9685_registers.hpp:kMode1Sleep, kMode1Restart",
+    "inc/pca9685_types.hpp:kOscillatorStartUs"
+  ]
+}

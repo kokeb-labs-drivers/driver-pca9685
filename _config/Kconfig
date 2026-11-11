@@ -1,0 +1,49 @@
+# Kconfig for the PCA9685 driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)), so `idf.py menuconfig` shows
+# "PCA9685 PWM controller". The values reach the code only through
+# inc/pca9685_kconfig.hpp; no public driver signature uses them.
+menuconfig PCA9685
+    bool "PCA9685 PWM controller"
+    default y
+    help
+      Defaults for pca9685::KconfigDefaults(). The driver itself does not
+      need Kconfig; outside ESP-IDF the same defaults come from Config{}.
+
+if PCA9685
+
+config PCA9685_PWM_FREQUENCY_HZ
+    int "PWM frequency (Hz)"
+    range 1 10000
+    default 200
+    help
+      PRE_SCALE = round(oscillator / (4096 x f)) - 1 must be 3 to 255:
+      about 24 to 1526 Hz from the 25 MHz internal oscillator. Reset value: 200 Hz.
+
+config PCA9685_OSCILLATOR_HZ
+    int "Counter clock (Hz): internal oscillator or EXTCLK"
+    range 1000000 50000000
+    default 25000000
+    help
+      25 MHz is the typical internal oscillator; set a measured value to
+      calibrate pulse widths, or the EXTCLK frequency.
+
+config PCA9685_EXTERNAL_CLOCK
+    bool "Run from the EXTCLK pin"
+    default n
+    help
+      MODE1.EXTCLK. Sticky on the chip until a power cycle or software reset.
+
+config PCA9685_OPEN_DRAIN
+    bool "Open-drain outputs"
+    default n
+    help
+      MODE2.OUTDRV = 0. The reset value is totem pole. LEDs with integrated
+      Zener diodes need open drain.
+
+config PCA9685_INVERT_OUTPUTS
+    bool "Invert the outputs"
+    default n
+    help
+      MODE2.INVRT = 1, for LEDs wired from the supply to the outputs.
+
+endif

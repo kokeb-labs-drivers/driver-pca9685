@@ -1,0 +1,9 @@
+{
+  "led0": "0x06",
+  "per": 4,
+  "full": "0x10",
+  "sources": [
+    "src/pca9685.ipp:applyOne, switchOn, switchOff, afterSwitchOff, writeChannels",
+    "inc/pca9685_registers.hpp:kLed0OnL, kBytesPerChannel, kLedFull"
+  ]
+}

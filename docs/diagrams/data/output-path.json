@@ -1,0 +1,12 @@
+{
+  "outne": {
+    "low": 0,
+    "high": 1,
+    "hiz": 2
+  },
+  "sources": [
+    "inc/pca9685.hpp:OffLevelOutne, Mode2Value",
+    "inc/pca9685_registers.hpp:kOutneLow, kOutneHigh, kOutneHiZ, kLedFull",
+    "src/pca9685.ipp:applyOne"
+  ]
+}
