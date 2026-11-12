@@ -1259,7 +1259,7 @@ is in range, the frequency is 1 Hz to <code>kMaxPwmFrequencyHz</code> and its pr
 <code>ApplyConfig()</code> on a started driver runs the whole start-up again with the new configuration, which switches every
 channel off first; before the start it only stores it.</p>
 <h2 id="kconfig">Kconfig<a class="headerlink" href="#kconfig" title="Permanent link">&para;</a></h2>
-<p>Under ESP-IDF, <code>idf.py menuconfig</code> has a <strong>PCA9685 PWM controller</strong> menu (<a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/e36da20c4699c32d3f9c4c42e152da75733d40f8/_config/Kconfig"><code>_config/Kconfig</code></a>):
+<p>Under ESP-IDF, <code>idf.py menuconfig</code> has a <strong>PCA9685 PWM controller</strong> menu (<a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/d301383960b22e3fcc7227ee5095c5fdcddd6ef8/_config/Kconfig"><code>_config/Kconfig</code></a>):
 the frequency, the oscillator, the external clock, open drain and inversion. <code>pca9685::KconfigDefaults()</code> in
 <code>pca9685_kconfig.hpp</code> returns <code>Config{}</code> with those values; without Kconfig it equals <code>Config{}</code>.</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">pca9685</span><span class="o">::</span><span class="n">Error</span><span class="w"> </span><span class="nf">StartFromMenuconfig</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

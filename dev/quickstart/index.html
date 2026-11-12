@@ -1145,7 +1145,7 @@ port class, call three driver functions.</p>
 <!-- /generated -->
 
 <h2 id="try-it-on-your-pc">Try it on your PC<a class="headerlink" href="#try-it-on-your-pc" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/e36da20c4699c32d3f9c4c42e152da75733d40f8/examples/host/README.md"><code>examples/host/</code></a> runs the real driver against a simulated PCA9685, through a host
+<p><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/d301383960b22e3fcc7227ee5095c5fdcddd6ef8/examples/host/README.md"><code>examples/host/</code></a> runs the real driver against a simulated PCA9685, through a host
 port. From the repository root, with CMake and a C++20 compiler:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>examples/host<span class="w"> </span>-B<span class="w"> </span>build-example
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build-example
@@ -1161,7 +1161,7 @@ port. From the repository root, with CMake and a C++20 compiler:</p>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>LED0 duty 4096/4096
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>servo on LED1: 1498160 ns pulse
 </span></code></pre></div>
-<p>The calls in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/e36da20c4699c32d3f9c4c42e152da75733d40f8/examples/host/main.cpp"><code>main.cpp</code></a> are the ones below; only the port differs on an MCU. CI builds
+<p>The calls in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/d301383960b22e3fcc7227ee5095c5fdcddd6ef8/examples/host/main.cpp"><code>main.cpp</code></a> are the ones below; only the port differs on an MCU. CI builds
 and runs this example on every pull request.</p>
 <h2 id="1-wire-it">1. Wire it<a class="headerlink" href="#1-wire-it" title="Permanent link">&para;</a></h2>
 <table>
