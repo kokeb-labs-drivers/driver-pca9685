@@ -37,7 +37,7 @@
 <text x="573" y="474.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">GpioSet(CtrlPin::OutputEnable)</text>
 <text x="573" y="495.9" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">+ R3 10 kΩ</text>
 <text x="50" y="575.3" font-size="20" font-weight="700" fill="#FECDD3">Supplies and ground</text>
-<text x="50" y="598.8" font-size="17" fill="#FECDD3">+3V3: VDD; also U2.VDD · +5V: ; also J1.5V · GND: A0, A1, A2, A3, A4, A5, EXTCLK, VSS; also U2.GND, J1.GND</text>
+<text x="50" y="598.8" font-size="17" fill="#FECDD3">+3V3: VDD; also U2.VDD · +5V (no PCA9685 pin): J1.5V · GND: A0, A1, A2, A3, A4, A5, EXTCLK, VSS; also U2.GND, J1.GND</text>
 <text x="50" y="668.3" font-size="20" font-weight="700" fill="#E2E8F0">Also on the board</text>
 <text x="50" y="691.8" font-size="17" fill="#E2E8F0">Support parts: 1 capacitor, 4 resistors, 1 other part around the supplies (values in the full schematic). Not wired in this circuit (15):</text>
 <text x="50" y="716.4" font-size="17" fill="#E2E8F0">LED1, LED2, LED3, LED4, LED5, LED6, LED7, LED8, LED9, LED10, LED11, LED12, LED13, LED14, LED15.</text>

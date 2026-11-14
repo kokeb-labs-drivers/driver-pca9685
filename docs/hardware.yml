@@ -51,12 +51,13 @@ overview:
     1526 Hz, and drives an LED directly or the input of an external driver
   category: 16-channel 12-bit PWM controller
   ref: cover
+  applications_ref: uses
   applications:
-    - {label: RGB or RGBA LED drivers, ref: uses}
-    - {label: LED status information, ref: uses}
-    - {label: LED displays, ref: uses}
-    - {label: LCD backlights, ref: uses}
-    - {label: Keypad backlights of handheld devices, ref: uses}
+    - RGB or RGBA LED drivers
+    - LED status information
+    - LED displays
+    - LCD backlights
+    - Keypad backlights of handheld devices
   specs:
     - {value: "16 x 12-bit", label: "PWM outputs, 4096 steps each", ref: cover}
     - {value: "24 to 1526 Hz", label: "PWM frequency, one for all outputs", ref: cover}

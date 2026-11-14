@@ -52,13 +52,13 @@ The site at <https://kokeb-labs-drivers.github.io/driver-pca9685/> opens when th
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- RGB or RGBA LED drivers (3, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3))
-- LED status information (3, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3))
-- LED displays (3, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3))
-- LCD backlights (3, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3))
-- Keypad backlights of handheld devices (3, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3))
+- RGB or RGBA LED drivers
+- LED status information
+- LED displays
+- LCD backlights
+- Keypad backlights of handheld devices
 
-Uses named by the datasheet (1 General description, [p. 1](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=1)).
+Uses named by the datasheet (3 Applications, [p. 3](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3)).
 <!-- /generated -->
 
 ## Inside the chip
@@ -209,7 +209,7 @@ bus. It runs on any MCU: you give it a small class that moves bytes on your bus,
 <!-- generated: datasheet-card -->
 | Document | Revision | Get it |
 | --- | --- | --- |
-| Datasheet: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller (NXP PCA9685) | Rev. 4, 2015-04-16 | [PDF](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf) · [vendor page](https://www.nxp.com/products/PCA9685) |
+| Datasheet: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller (NXP PCA9685) | Rev. 4, 2015-04-16 | [PDF](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf) · [vendor page](https://www.nxp.com/products/power-drivers/lighting-driver-and-controller-ics/led-drivers/16-channel-12-bit-pwm-fm-plus-ic-bus-led-driver:PCA9685) |
 
 Written against these revisions; the SHA-256 of each file is in [`docs/datasheets.yml`](docs/datasheets.yml). Where each
 part of the driver is in the datasheet: [Datasheet map](docs/datasheet.md).

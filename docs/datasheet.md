@@ -7,8 +7,9 @@ are the datasheet's own (the printed page numbers).
 
 <!-- generated: datasheet-map -->
 - **Datasheet: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller**, NXP PCA9685, revision Rev. 4 (2015-04-16).
-  Get it from the [vendor page](https://www.nxp.com/products/PCA9685) or as a
-  [PDF](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf).
+  Get it from the [vendor
+  page](https://www.nxp.com/products/power-drivers/lighting-driver-and-controller-ics/led-drivers/16-channel-12-bit-pwm-fm-plus-ic-bus-led-driver:PCA9685)
+  or as a [PDF](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf).
   SHA-256 of the file used: `237d47f339cac4c3a0d56a5f0b4d3c93df71e3eb43f36ac57ea4ff38e6b2e585`.
 
 | Topic | Datasheet section | Page | In the driver | Explained on |

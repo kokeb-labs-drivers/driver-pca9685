@@ -17,7 +17,7 @@ documents:
     number: PCA9685
     revision: Rev. 4
     date: 2015-04-16
-    url: https://www.nxp.com/products/PCA9685
+    url: https://www.nxp.com/products/power-drivers/lighting-driver-and-controller-ics/led-drivers/16-channel-12-bit-pwm-fm-plus-ic-bus-led-driver:PCA9685
     pdf: https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf
     page_offset: 0
     sha256: 237d47f339cac4c3a0d56a5f0b4d3c93df71e3eb43f36ac57ea4ff38e6b2e585
