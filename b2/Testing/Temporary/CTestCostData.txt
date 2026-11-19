@@ -1,0 +1,23 @@
+pca9685_host_tests 1 0.0883036
+pca9685_kconfig_defaults 1 0.0908896
+pca9685_kconfig_set 1 0.0794741
+pca9685_version 1 0.08109
+pca9685_version_probe 1 0.0802883
+pca9685_version_copy__config_Doxyfile 1 0.013255
+pca9685_host_example 1 0.0779656
+pca9685_install_consumer 1 1.5589
+pca9685_doxygen 1 0.133875
+pca9685_compile_fail_always_false_non_class 1 0.229207
+pca9685_compile_fail_checked_config_invalid 1 0.222019
+pca9685_compile_fail_delay_us_narrowed 1 0.713024
+pca9685_compile_fail_enum_last_non_enum 1 0.239569
+pca9685_compile_fail_exact_hook_non_class 1 0.243073
+pca9685_compile_fail_get_last_failure_misdeclared 1 0.770313
+pca9685_compile_fail_gpio_set_returns_void 1 0.773086
+pca9685_compile_fail_hook_narrowed_parameter 1 0.770999
+pca9685_compile_fail_hook_not_noexcept 1 0.695831
+pca9685_compile_fail_log_not_noexcept 1 0.760005
+pca9685_compile_fail_not_a_port 1 0.695082
+pca9685_compile_fail_port_without_delay 1 0.726007
+pca9685_fuzz_pca9685_corpus 1 0.0930075
+---
