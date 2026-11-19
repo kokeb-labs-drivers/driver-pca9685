@@ -372,12 +372,15 @@ Result<void> PCA9685<Port>::SetChannels(uint8_t first, std::span<const Pwm> valu
   if (refusal != Error::Ok) {
     return Result<void>::Failure(refusal); // the switch-ons are refused; the switch-offs went out
   }
+  if (!offs) {
+    // A switch-off that did not go out is the failure to report; no switch-on follows it, and the
+    // burst below is not sent: a burst that stops part-way leaves old and new bytes mixed, and for
+    // a channel being switched off that can raise its duty.
+    return offs;
+  }
   const auto normalised = detail::NormaliseBank(values);
   if (auto written = writeChannels(first, std::span{normalised}.first(count)); !written) {
     return written;
-  }
-  if (!offs) {
-    return offs;
   }
   return asleep_maybe_ ? Result<void>::Failure(Error::Asleep) : Result<void>::Success();
 }

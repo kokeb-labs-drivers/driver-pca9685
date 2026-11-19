@@ -6,6 +6,12 @@ version bump (a minor bump before 1.0).
 
 ## [Unreleased]
 
+### Fixed
+
+- `SetChannels()` sends no switch-on burst after a switch-off write failed. A burst that stopped part-way left old and new
+  bytes mixed and could raise the duty of a channel that was being switched off (found by the fuzzer; the input is in
+  the replay corpus).
+
 ### Changed
 
 - The repository moved to kokeb-labs-drivers; URLs follow.
