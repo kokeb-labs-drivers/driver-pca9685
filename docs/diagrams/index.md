@@ -168,6 +168,41 @@ Drawn from:
 - `public calls` in [`inc/pca9685.hpp`](../../inc/pca9685.hpp)
 - `I2cInterface` in [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
 
+## I2C timing in Fast-mode Plus
+
+<!-- figure: i2c-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-timing.dark.svg">
+  <img src="i2c-timing.svg"
+    alt="I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last
+    data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and
+    stop times of the data sheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+## Several PCA9685 on one I2C bus
+
+<!-- figure: i2c-topology -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-topology.dark.svg">
+  <img src="i2c-topology.svg"
+    alt="An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address
+    its pins A5 to A0 select, with one pull-up resistor per line.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
+
 ## From the registers to the pin
 
 <!-- figure: output-path -->

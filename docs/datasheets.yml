@@ -31,18 +31,24 @@ topics:
     page: 6
     driver: "`CtrlPin::OutputEnable`"
     docs: [hardware, quickstart]
+  - topic: Device addresses, 62 usable
+    doc: pca9685
+    section: 7.1 Device addresses
+    page: 7
+    driver: "`kMinI2cAddress`, `kMaxI2cAddress`, `kAllCallAddress`"
+    docs: [bus]
   - topic: Slave address, A0 to A5
     doc: pca9685
     section: 7.1.1 Regular I2C-bus slave address; Figure 4
     page: 7
     driver: "`kI2cAddress`, `kMinI2cAddress`, `kMaxI2cAddress`, `Error::InvalidArgument`"
-    docs: [hardware, porting, troubleshooting]
+    docs: [hardware, porting, troubleshooting, bus]
   - topic: LED All Call and Sub Call addresses
     doc: pca9685
     section: 7.1.2 LED All Call I2C-bus address; 7.1.3 LED Sub Call I2C-bus addresses
     page: 8
     driver: "`kAllCallAddress`, MODE1.ALLCALL and SUB1 to SUB3 cleared by `EnsureInitialized()`"
-    docs: [hardware, contract]
+    docs: [hardware, contract, bus]
   - topic: Software Reset address
     doc: pca9685
     section: 7.1.4 Software Reset I2C-bus address
@@ -134,13 +140,13 @@ topics:
     section: 9 Bus transactions; Figures 20 to 24
     page: 32
     driver: "`I2cInterface`, `I2cPort`, `kRepeatedStart`, every register access"
-    docs: [porting, architecture]
+    docs: [porting, architecture, bus]
   - topic: Typical application
     doc: pca9685
     section: 10 Application design-in information; Figure 26
     page: 35
     driver: "-"
-    docs: [hardware]
+    docs: [hardware, bus]
   - topic: Supply, power-on reset voltage and output currents
     doc: pca9685
     section: 11 Limiting values; 12 Static characteristics
@@ -152,4 +158,4 @@ topics:
     section: 13 Dynamic characteristics; Table 15
     page: 40
     driver: "`kMaxClockHz`, `kMaxOscillatorHz`, `DisableOutputs()`"
-    docs: [hardware, porting]
+    docs: [hardware, porting, bus]

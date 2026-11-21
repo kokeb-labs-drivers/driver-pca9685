@@ -95,6 +95,40 @@
       "inc/pca9685_i2c_interface.hpp:I2cInterface"
     ]
   },
+  "i2c-timing": {
+    "title": "I2C timing in Fast-mode Plus",
+    "alt": "I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and stop times of the data sheet.",
+    "description": "The two lanes are SCL and SDA, left to right in time. After the bus free time SDA falls while SCL is high (the start), bits A7 and A6 follow, each stable while SCL is high, the bits in between are left out, then D1, D0 and the acknowledge of the PCA9685, and SDA rises while SCL is high (the stop). The table gives each interval.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-timing.timing.yml",
+    "sources": [
+      "docs/model/i2c-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
+  },
+  "i2c-topology": {
+    "title": "Several PCA9685 on one I2C bus",
+    "alt": "An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address its pins A5 to A0 select, with one pull-up resistor per line.",
+    "description": "The MCU on top and the PCA9685 controllers under it connect to the rails SCL and SDA on the right; the dashed card stands for the controllers in between. The first PCA9685 answers at 0x40 and the last at 0x7F, and one pull-up per line ties the bus to VDD.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-topology.topology.yml",
+    "sources": [
+      "docs/model/i2c-topology.topology.yml"
+    ],
+    "kind": "topology",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
   "output-path": {
     "title": "From the registers to the pin",
     "alt": "Five stages left to right: full OFF, full ON and the counter decide the channel logic; sleep freezes it; INVRT and OUTDRV set the pin level; OE high replaces it with the OUTNE level; a table gives the off level per configuration.",
