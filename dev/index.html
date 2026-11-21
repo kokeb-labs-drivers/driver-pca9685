@@ -100,72 +100,6 @@
   <meta property="og:description" content="C++20 driver for the NXP PCA9685 16-channel, 12-bit PWM controller on I2C.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pca9685/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,6 +471,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver coverage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -544,6 +545,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -585,6 +591,8 @@
   
     
     
+      
+        
       
         
       
@@ -862,6 +870,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver coverage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -869,6 +944,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -931,9 +1011,77 @@ restart sequence, finds chip resets and never refuses a switch-off, on any MCU.<
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-pca9685">Source on GitHub</a></p>
 </div>
-<p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
-rest: the start-up from any state, the register framing with auto-increment, the frequency arithmetic, the
-sleep and restart sequence, reset detection and the bookkeeping of writes that may or may not have arrived.</p>
+<!-- generated: chip-summary -->
+<p>The <strong>PCA9685</strong> is a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from
+about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver (1 General description, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=1">p.
+1</a>).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins." width="1200" height="615"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins." width="1200" height="615">
+<figcaption>PCA9685</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PCA9685 in the middle, drawn as its TSSOP-28 package. On the left the MCU that runs the driver, joined to it by I2C. To the right, what the chip drives, in the order the power flows. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the PCA9685: PWM per channel (supported): Sets each output&#x27;s duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only." width="1200" height="968" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the PCA9685: PWM per channel (supported): Sets each output&#x27;s duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only." width="1200" height="968" loading="lazy">
+<figcaption>What the PCA9685 does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the PCA9685: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>RGB or RGBA LED drivers</li>
+<li>LED status information</li>
+<li>LED displays</li>
+<li>LCD backlights</li>
+<li>Keypad backlights of handheld devices</li>
+</ul>
+<p>Uses named by the datasheet (3 Applications, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=3">p. 3</a>).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-chip">Inside the chip<a class="headerlink" href="#inside-the-chip" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the PCA9685: its function blocks, how they connect and which package pins reach each block." width="1200" height="1015" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the PCA9685: its function blocks, how they connect and which package pins reach each block." width="1200" height="1015" loading="lazy">
+<figcaption>Inside the PCA9685</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PCA9685's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the PCA9685 in TSSOP-28, top view: 28 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="1081" height="761" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the PCA9685 in TSSOP-28, top view: 28 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="1081" height="761" loading="lazy">
+<figcaption>PCA9685 pinout, TSSOP-28</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PCA9685 seen from the top, in its TSSOP-28 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-typical.svg#only-light" alt="Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="876" loading="lazy"><img src="diagrams/chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="876" loading="lazy">
+<figcaption>Wiring: Typical application</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the PCA9685 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
 <div class="kb-chip">
 <div class="kb-chip__head">
 <span class="kb-chip__kicker">PWM controller</span>
@@ -953,7 +1101,125 @@ sleep and restart sequence, reset detection and the bookkeeping of writes that m
 <dd>2.3 V to 5.5 V; 5.5 V tolerant inputs and outputs</dd>
 </dl>
 </div>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
+<p>Every pin, the reference circuits, the bus settings, the timing and the power: <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the chip as above, write the port for your MCU (<a href="porting/">Porting</a>), then:</p>
+<!-- generated: quickstart-code -->
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"pca9685.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">dim_led_to_quarter</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">pca9685</span><span class="o">::</span><span class="n">PCA9685</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pwm</span><span class="p">(</span><span class="n">port</span><span class="p">);</span><span class="w"> </span><span class="c1">// address 0x40 (A5..A0 low), Config{}: no I/O yet</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pwm</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. every channel off, configured, oscillator on</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    Bus or DeviceIdMismatch: check wiring and address</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pwm</span><span class="p">.</span><span class="n">SetDuty</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">);</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 2. LED0 on for 1024 of 4096 counts, 200 Hz</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pwm</span><span class="p">.</span><span class="n">SetChannelOff</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3. off again: never refused</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<!-- /generated -->
+
+<p>Step by step, from a bare chip to the first result: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the chip does</th>
+<th>Driver API</th>
+<th>Registers</th>
+<th>Status</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="api-guide/">PWM per channel</a></td>
+<td>Sets each output's duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds</td>
+<td><code>SetPwm</code>, <code>SetDuty</code>, <code>SetPulseWidthUs</code>, <code>ReadChannel</code></td>
+<td><code>LED0_ON_L</code>, <code>LED15_OFF_H</code></td>
+<td>Supported</td>
+<td>7.3.3, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=16">p. 16</a></td>
+</tr>
+<tr>
+<td><a href="api-guide/">Full on and full off</a></td>
+<td>Holds an output fully on or fully off with no PWM; a switch-off is never refused</td>
+<td><code>SetFullOn</code>, <code>SetChannelOff</code>, <code>SetChannelsOff</code></td>
+<td><code>LED0_ON_L</code>, <code>LED15_OFF_H</code></td>
+<td>Supported</td>
+<td>7.3.3, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=16">p. 16</a></td>
+</tr>
+<tr>
+<td><a href="api-guide/">All channels at once</a></td>
+<td>Switches every output off with one write, or changes a run of channels together in one transfer</td>
+<td><code>SetAllOff</code>, <code>SetChannels</code></td>
+<td><code>ALL_LED_OFF_H</code>, <code>LED0_ON_L</code>, <code>LED15_OFF_H</code></td>
+<td>Supported</td>
+<td>7.3.4, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=25">p. 25</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">PWM frequency and clock</a></td>
+<td>One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz</td>
+<td><code>SetPwmFrequency</code>, <code>GetPwmFrequencyHz</code>, <code>ReadPrescale</code>, <code>ClockSource</code></td>
+<td><code>PRE_SCALE</code>, <code>MODE1</code></td>
+<td>Supported</td>
+<td>7.3.5, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=25">p. 25</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">Output drive and inversion</a></td>
+<td>Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers</td>
+<td><code>OutputDrive</code>, <code>DirectLedPreset</code>, <code>ApplyConfig</code></td>
+<td><code>MODE2</code></td>
+<td>Supported</td>
+<td>7.3.2, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=16">p. 16</a></td>
+</tr>
+<tr>
+<td><a href="hardware/">Output enable pin</a></td>
+<td>Switches every output to its off level at once through the OE pin, with no bus traffic</td>
+<td><code>DisableOutputs</code>, <code>EnableOutputs</code></td>
+<td><code>MODE2</code></td>
+<td>Supported</td>
+<td>7.4, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=27">p. 27</a></td>
+</tr>
+<tr>
+<td><a href="api-guide/">Sleep and restart</a></td>
+<td>Stops the oscillator to save power, then restarts the PWM where it stopped</td>
+<td><code>Sleep</code>, <code>Wake</code>, <code>MayBeAsleep</code></td>
+<td><code>MODE1</code></td>
+<td>Supported</td>
+<td>7.3.1.1, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=15">p. 15</a></td>
+</tr>
+<tr>
+<td><a href="contract/">Reset detection</a></td>
+<td>Starts from any state with every output off, and finds a power-on or software reset</td>
+<td><code>EnsureInitialized</code>, <code>CheckForReset</code></td>
+<td><code>MODE1</code>, <code>MODE2</code>, <code>SUBADR1</code></td>
+<td>Supported</td>
+<td>7.5, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=27">p. 27</a></td>
+</tr>
+<tr>
+<td><a href="hardware/">Group addresses</a></td>
+<td>LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only</td>
+<td>-</td>
+<td><code>ALLCALLADR</code>, <code>SUBADR1</code>, <code>SUBADR2</code>, <code>SUBADR3</code></td>
+<td>Not covered</td>
+<td>7.1.2, <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=8">p. 8</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver covers it and a host test checks it; <strong>Not covered</strong>: the chip has it and the driver leaves it
+alone.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/pca9685.hpp</code>, <code>inc/pca9685_types.hpp</code> and every register in <code>inc/pca9685_registers.hpp</code>.</p>
+<!-- /generated -->
+
+<p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
+rest: the start-up from any state, the register framing with auto-increment, the frequency arithmetic, the
+sleep and restart sequence, reset detection and the bookkeeping of writes that may or may not have arrived.</p>
+<h3 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>One object per chip.</strong> <code>PCA9685&lt;YourPort&gt;</code> takes a reference to your port and does no I/O until
   <code>EnsureInitialized()</code>. See <a href="api-guide/">API guide</a>.</li>
@@ -985,7 +1251,7 @@ sleep and restart sequence, reset detection and the bookkeeping of writes that m
 <tr>
 <td>Datasheet: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller (NXP PCA9685)</td>
 <td>Rev. 4, 2015-04-16</td>
-<td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf">PDF</a> · <a href="https://www.nxp.com/products/PCA9685">vendor page</a></td>
+<td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf">PDF</a> · <a href="https://www.nxp.com/products/power-drivers/lighting-driver-and-controller-ics/led-drivers/16-channel-12-bit-pwm-fm-plus-ic-bus-led-driver:PCA9685">vendor page</a></td>
 </tr>
 </tbody>
 </table>

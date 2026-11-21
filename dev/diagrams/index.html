@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for the NXP PCA9685 16-channel, 12-bit PWM controller on I2C.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pca9685/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -505,6 +439,8 @@
   
     
     
+      
+        
       
         
       
@@ -964,10 +900,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-pca9685-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the PCA9685 does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pca9685-typical-application" class="md-nav__link">
     <span class="md-ellipsis">
       
         PCA9685: Typical application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pca9685" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PCA9685
       
     </span>
   </a>
@@ -986,10 +944,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wiring-typical-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Typical application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-layers-one-of-them-yours" class="md-nav__link">
     <span class="md-ellipsis">
       
         The layers, one of them yours
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i2c-timing-in-fast-mode-plus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I2C timing in Fast-mode Plus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#several-pca9685-on-one-i2c-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Several PCA9685 on one I2C bus
       
     </span>
   </a>
@@ -1069,13 +1060,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top, the transfer the driver sends for a switch-on (SetDuty(), SetPulseWidthUs(), SetFullOn(), SetPwm()): the control register LEDn_ON_L, then ON_L, ON_H, OFF_L and OFF_H, with auto-increment. With MODE2.OCH = 0, which the driver always keeps, the bytes reach the output together at the STOP. Below, the outcomes: an acknowledged transfer updates the driver's copy; a NACK part-way leaves the bytes before it stored and applied at the STOP, so the channel may hold old, new or mixed values and becomes unknown; an address NACK proves nothing arrived. The band at the bottom is the switch-off: one data byte, LEDn_OFF_H = 0x10, stored or not, and full OFF takes precedence, so a switch-off never makes a channel more active, even when it fails; it is sent whatever the driver doubts.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>applyOne, switchOn, switchOff, afterSwitchOff, writeChannels</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kLed0OnL, kBytesPerChannel, kLedFull</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/channel-write.py"><code>docs/diagrams/figures/channel-write.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>applyOne, switchOn, switchOff, afterSwitchOff, writeChannels</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kLed0OnL, kBytesPerChannel, kLedFull</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/channel-write.py"><code>docs/diagrams/figures/channel-write.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/channel-write.py"><code>docs/diagrams/figures/channel-write.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/channel-write.py"><code>docs/diagrams/figures/channel-write.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>applyOne, switchOn, switchOff, afterSwitchOff, writeChannels</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
-<li><code>kLed0OnL, kBytesPerChannel, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
+<li><code>applyOne, switchOn, switchOff, afterSwitchOff, writeChannels</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
+<li><code>kLed0OnL, kBytesPerChannel, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
 </ul>
 <h2 id="inside-the-pca9685">Inside the PCA9685<a class="headerlink" href="#inside-the-pca9685" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1086,13 +1077,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PCA9685's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="what-the-pca9685-does">What the PCA9685 does<a class="headerlink" href="#what-the-pca9685-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the PCA9685: PWM per channel (supported): Sets each output&#x27;s duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only." width="1200" height="968" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the PCA9685: PWM per channel (supported): Sets each output&#x27;s duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only." width="1200" height="968" loading="lazy">
+<figcaption>What the PCA9685 does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the PCA9685: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="pca9685-typical-application">PCA9685: Typical application<a class="headerlink" href="#pca9685-typical-application" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1103,13 +1111,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="pca9685">PCA9685<a class="headerlink" href="#pca9685" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins." width="1200" height="615" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins." width="1200" height="615" loading="lazy">
+<figcaption>PCA9685</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PCA9685 in the middle, drawn as its TSSOP-28 package. On the left the MCU that runs the driver, joined to it by I2C. To the right, what the chip drives, in the order the power flows. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="pca9685-pinout-tssop-28">PCA9685 pinout, TSSOP-28<a class="headerlink" href="#pca9685-pinout-tssop-28" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1120,13 +1145,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PCA9685 seen from the top, in its TSSOP-28 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-typical-application">Wiring: Typical application<a class="headerlink" href="#wiring-typical-application" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-typical.svg#only-light" alt="Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="876" loading="lazy"><img src="chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="876" loading="lazy">
+<figcaption>Wiring: Typical application</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the PCA9685 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1137,13 +1179,45 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a></li>
-<li><code>I2cInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a></li>
+<li><code>I2cInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_i2c_interface.hpp"><code>inc/pca9685_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="i2c-timing-in-fast-mode-plus">I2C timing in Fast-mode Plus<a class="headerlink" href="#i2c-timing-in-fast-mode-plus" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="i2c-timing.svg#only-light" alt="I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and stop times of the data sheet." width="640" height="1600" loading="lazy"><img src="i2c-timing.dark.svg#only-dark" alt="I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and stop times of the data sheet." width="640" height="1600" loading="lazy">
+<figcaption>I2C timing in Fast-mode Plus</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The two lanes are SCL and SDA, left to right in time. After the bus free time SDA falls while SCL is high (the start), bits A7 and A6 follow, each stable while SCL is high, the bits in between are left out, then D1, D0 and the acknowledge of the PCA9685, and SDA rises while SCL is high (the stop). The table gives each interval.</p>
+<p>Drawn from: <a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a></li>
+</ul>
+<h2 id="several-pca9685-on-one-i2c-bus">Several PCA9685 on one I2C bus<a class="headerlink" href="#several-pca9685-on-one-i2c-bus" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="i2c-topology.svg#only-light" alt="An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address its pins A5 to A0 select, with one pull-up resistor per line." width="640" height="799" loading="lazy"><img src="i2c-topology.dark.svg#only-dark" alt="An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address its pins A5 to A0 select, with one pull-up resistor per line." width="640" height="799" loading="lazy">
+<figcaption>Several PCA9685 on one I2C bus</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on top and the PCA9685 controllers under it connect to the rails SCL and SDA on the right; the dashed card stands for the controllers in between. The first PCA9685 answers at 0x40 and the last at 0x7F, and one pull-up per line ties the bus to VDD.</p>
+<p>Drawn from: <a href="../model/i2c-topology.topology.yml"><code>docs/model/i2c-topology.topology.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/i2c-topology.topology.yml"><code>docs/model/i2c-topology.topology.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/i2c-topology.topology.yml"><code>docs/model/i2c-topology.topology.yml</code></a></li>
 </ul>
 <h2 id="from-the-registers-to-the-pin">From the registers to the pin<a class="headerlink" href="#from-the-registers-to-the-pin" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1154,14 +1228,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Left to right, what decides the level of output LEDn (tables 6, 7 and 11). The channel logic is off when LEDn_OFF_H bit 4 is set, whatever else the registers hold; otherwise on when LEDn_ON_H bit 4 is set; otherwise asserted from the ON count to the OFF count of the 12-bit counter. Asleep, the oscillator is off and an output can be neither switched on nor off. INVRT inverts the logic while OE is low; OUTDRV makes a high level a driven high (totem pole) or high impedance (open drain). OE high replaces everything with the OUTNE level, which the driver sets to the level of a channel that is off. The table at the bottom gives that level for each configuration, and whether the reset state (not inverted, OUTNE = 00) is off for the load.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a> <code>OffLevelOutne, Mode2Value</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kOutneLow, kOutneHigh, kOutneHiZ, kLedFull</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>applyOne</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/output-path.py"><code>docs/diagrams/figures/output-path.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a> <code>OffLevelOutne, Mode2Value</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kOutneLow, kOutneHigh, kOutneHiZ, kLedFull</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>applyOne</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/output-path.py"><code>docs/diagrams/figures/output-path.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/output-path.py"><code>docs/diagrams/figures/output-path.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/output-path.py"><code>docs/diagrams/figures/output-path.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>OffLevelOutne, Mode2Value</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a></li>
-<li><code>kOutneLow, kOutneHigh, kOutneHiZ, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
-<li><code>applyOne</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
+<li><code>OffLevelOutne, Mode2Value</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685.hpp"><code>inc/pca9685.hpp</code></a></li>
+<li><code>kOutneLow, kOutneHigh, kOutneHiZ, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
+<li><code>applyOne</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
 </ul>
 <h2 id="sleep-wake-and-restart">Sleep, wake and restart<a class="headerlink" href="#sleep-wake-and-restart" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1172,14 +1246,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Left, the two ways to sleep. SleepMode::OutputsOff writes ALL_LED_OFF first (the orderly shutdown of section 7.3.1.1), so nothing is held and RESTART stays clear; SleepMode::HoldOutputs sleeps with the channels running, so RESTART sets and an output may hold its level while the oscillator is off. Both read MODE1 and MODE2 first, the reset check, before MODE1 is written from the driver's copy. Right, the wake: the reset check, MODE1 with SLEEP = 0, the oscillator start-up wait, then the wake check (MODE1, MODE2 and PRE_SCALE compared with the copy); when RESTART reads 1 it is written back as 1, which restarts the channels, and because that write clears SLEEP too the wake check runs once more. SetPwmFrequency() is a sleep, a PRE_SCALE write and read-back, and this wake. The band at the bottom says what a failed check leaves.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>Sleep, Wake, wakeSequence, completeWakeCheck, verifyRunning, SetPwmFrequency, changePrescale</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kMode1Sleep, kMode1Restart</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a> <code>kOscillatorStartUs</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/sleep-restart.py"><code>docs/diagrams/figures/sleep-restart.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>Sleep, Wake, wakeSequence, completeWakeCheck, verifyRunning, SetPwmFrequency, changePrescale</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kMode1Sleep, kMode1Restart</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a> <code>kOscillatorStartUs</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/sleep-restart.py"><code>docs/diagrams/figures/sleep-restart.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/sleep-restart.py"><code>docs/diagrams/figures/sleep-restart.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/sleep-restart.py"><code>docs/diagrams/figures/sleep-restart.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>Sleep, Wake, wakeSequence, completeWakeCheck, verifyRunning, SetPwmFrequency, changePrescale</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
-<li><code>kMode1Sleep, kMode1Restart</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
-<li><code>kOscillatorStartUs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a></li>
+<li><code>Sleep, Wake, wakeSequence, completeWakeCheck, verifyRunning, SetPwmFrequency, changePrescale</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
+<li><code>kMode1Sleep, kMode1Restart</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
+<li><code>kOscillatorStartUs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a></li>
 </ul>
 <h2 id="what-ensureinitialized-does">What EnsureInitialized() does<a class="headerlink" href="#what-ensureinitialized-does" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1190,14 +1264,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom on the left, the steps of the first EnsureInitialized() call; once it has succeeded a later call runs the reset check (one read) and returns Ok, or starts again at the top when the chip reset. The configuration and the address are checked before any I/O. Step 1 switches everything off whatever an earlier run left: OE high, then one-byte ALL_LED_OFF_H writes before and after MODE2, which sets OCH = 0 so the second one reaches the outputs at its STOP; all four are sent even when one fails. Step 2 reads MODE1, puts the chip to sleep with auto-increment on (EXTCLK by the two-write sequence when asked), writes PRE_SCALE, which only takes a write asleep, and the SUBADR1 reset sentinel. Step 3 is the identity check: the chip has no ID register, so MODE1, MODE2, SUBADR1 and PRE_SCALE must read back what was written and every channel full OFF. Step 4 wakes the oscillator, waits its start-up, runs the wake check (MODE1, MODE2, SUBADR1 and PRE_SCALE once more) and enables OE. Each card on the right is the error a step returns; after any failure the driver stays uninitialised and the next call starts at the top.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>EnsureInitialized, initialize, enterSafeState, configureClock, checkIdentity, wakeSequence, addressValid</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a> <code>kMinI2cAddress, kMaxI2cAddress, kAllCallAddress, kOscillatorStartUs</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kAllLedOffH, kLedFull</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a> <code>EnsureInitialized, initialize, enterSafeState, configureClock, checkIdentity, wakeSequence, addressValid</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a> <code>kMinI2cAddress, kMaxI2cAddress, kAllCallAddress, kOscillatorStartUs</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a> <code>kAllLedOffH, kLedFull</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>EnsureInitialized, initialize, enterSafeState, configureClock, checkIdentity, wakeSequence, addressValid</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
-<li><code>kMinI2cAddress, kMaxI2cAddress, kAllCallAddress, kOscillatorStartUs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a></li>
-<li><code>kAllLedOffH, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/71cd6a1abb3cb7f0f342d0da35009705a62a360c/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
+<li><code>EnsureInitialized, initialize, enterSafeState, configureClock, checkIdentity, wakeSequence, addressValid</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/src/pca9685.ipp"><code>src/pca9685.ipp</code></a></li>
+<li><code>kMinI2cAddress, kMaxI2cAddress, kAllCallAddress, kOscillatorStartUs</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_types.hpp"><code>inc/pca9685_types.hpp</code></a></li>
+<li><code>kAllLedOffH, kLedFull</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pca9685/blob/dd0428240ab720a412c3f578f96d31c362fc8c2b/inc/pca9685_registers.hpp"><code>inc/pca9685_registers.hpp</code></a></li>
 </ul>
 
 

@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for the NXP PCA9685 16-channel, 12-bit PWM controller on I2C.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pca9685/latest/datasheet/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -505,6 +439,8 @@
   
     
     
+      
+        
       
         
       
@@ -1042,8 +978,9 @@ are the datasheet's own (the printed page numbers).</p>
 <!-- generated: datasheet-map -->
 <ul>
 <li><strong>Datasheet: PCA9685 16-channel, 12-bit PWM Fm+ I2C-bus LED controller</strong>, NXP PCA9685, revision Rev. 4 (2015-04-16).
-  Get it from the <a href="https://www.nxp.com/products/PCA9685">vendor page</a> or as a
-  <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf">PDF</a>.
+  Get it from the <a href="https://www.nxp.com/products/power-drivers/lighting-driver-and-controller-ics/led-drivers/16-channel-12-bit-pwm-fm-plus-ic-bus-led-driver:PCA9685">vendor
+  page</a>
+  or as a <a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf">PDF</a>.
   SHA-256 of the file used: <code>237d47f339cac4c3a0d56a5f0b4d3c93df71e3eb43f36ac57ea4ff38e6b2e585</code>.</li>
 </ul>
 <table>
@@ -1065,18 +1002,25 @@ are the datasheet's own (the printed page numbers).</p>
 <td><a href="../hardware/">Hardware</a>, <a href="../quickstart/">Quickstart</a></td>
 </tr>
 <tr>
+<td>Device addresses, 62 usable</td>
+<td>7.1 Device addresses</td>
+<td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=7">p. 7</a></td>
+<td><code>kMinI2cAddress</code>, <code>kMaxI2cAddress</code>, <code>kAllCallAddress</code></td>
+<td><a href="../bus/">On the bus</a></td>
+</tr>
+<tr>
 <td>Slave address, A0 to A5</td>
 <td>7.1.1 Regular I2C-bus slave address; Figure 4</td>
 <td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=7">p. 7</a></td>
 <td><code>kI2cAddress</code>, <code>kMinI2cAddress</code>, <code>kMaxI2cAddress</code>, <code>Error::InvalidArgument</code></td>
-<td><a href="../hardware/">Hardware</a>, <a href="../porting/">Porting</a>, <a href="../troubleshooting/">Troubleshooting</a></td>
+<td><a href="../hardware/">Hardware</a>, <a href="../porting/">Porting</a>, <a href="../troubleshooting/">Troubleshooting</a>, <a href="../bus/">On the bus</a></td>
 </tr>
 <tr>
 <td>LED All Call and Sub Call addresses</td>
 <td>7.1.2 LED All Call I2C-bus address; 7.1.3 LED Sub Call I2C-bus addresses</td>
 <td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=8">p. 8</a></td>
 <td><code>kAllCallAddress</code>, MODE1.ALLCALL and SUB1 to SUB3 cleared by <code>EnsureInitialized()</code></td>
-<td><a href="../hardware/">Hardware</a>, <a href="../contract/">Contract</a></td>
+<td><a href="../hardware/">Hardware</a>, <a href="../contract/">Contract</a>, <a href="../bus/">On the bus</a></td>
 </tr>
 <tr>
 <td>Software Reset address</td>
@@ -1181,14 +1125,14 @@ are the datasheet's own (the printed page numbers).</p>
 <td>9 Bus transactions; Figures 20 to 24</td>
 <td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=32">p. 32</a></td>
 <td><code>I2cInterface</code>, <code>I2cPort</code>, <code>kRepeatedStart</code>, every register access</td>
-<td><a href="../porting/">Porting</a>, <a href="../architecture/">Architecture</a></td>
+<td><a href="../porting/">Porting</a>, <a href="../architecture/">Architecture</a>, <a href="../bus/">On the bus</a></td>
 </tr>
 <tr>
 <td>Typical application</td>
 <td>10 Application design-in information; Figure 26</td>
 <td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=35">p. 35</a></td>
 <td>-</td>
-<td><a href="../hardware/">Hardware</a></td>
+<td><a href="../hardware/">Hardware</a>, <a href="../bus/">On the bus</a></td>
 </tr>
 <tr>
 <td>Supply, power-on reset voltage and output currents</td>
@@ -1202,7 +1146,7 @@ are the datasheet's own (the printed page numbers).</p>
 <td>13 Dynamic characteristics; Table 15</td>
 <td><a href="https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf#page=40">p. 40</a></td>
 <td><code>kMaxClockHz</code>, <code>kMaxOscillatorHz</code>, <code>DisableOutputs()</code></td>
-<td><a href="../hardware/">Hardware</a>, <a href="../porting/">Porting</a></td>
+<td><a href="../hardware/">Hardware</a>, <a href="../porting/">Porting</a>, <a href="../bus/">On the bus</a></td>
 </tr>
 </tbody>
 </table>

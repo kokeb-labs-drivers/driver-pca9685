@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="968" viewBox="0 0 1200 968" role="img" aria-labelledby="chip-capabilities-title chip-capabilities-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-capabilities-title">What the PCA9685 does</title>
+<desc id="chip-capabilities-desc">Capability map of the PCA9685: PWM per channel (supported): Sets each output's duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only.</desc>
+<rect x="0.5" y="0.5" width="1199" height="967" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">CAPABILITIES</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">What the PCA9685 does</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">One card per function of the chip, with how this driver covers it and the registers behind it.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="32" y="149.4" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="149.4" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="149.4" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="419.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="419.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="419.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="655.3" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="655.3" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="655.3" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<circle cx="78" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="78" cy="192.5" r="8.7" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M74.4 203.4 L81.6 203.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.8 207.7 L80.2 207.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="201.4" font-size="20" font-weight="700" fill="#0E1726">PWM per channel</text>
+<text x="50" y="249.8" font-size="17" fill="#2B3442">Sets each output's duty and turn-on</text>
+<text x="50" y="274.5" font-size="17" fill="#2B3442">delay in 4096 steps, or a servo pulse</text>
+<text x="50" y="299.1" font-size="17" fill="#2B3442">width in microseconds</text>
+<rect x="50" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="161.4" y="317.7" width="111.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="169.4" y="335.8" font-size="16" font-weight="700" fill="#334155">LED0_ON_L</text>
+<rect x="50" y="351.7" width="127.8" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="58" y="369.8" font-size="16" font-weight="700" fill="#334155">LED15_OFF_H</text>
+<circle cx="463.3" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M448.9 199.7 L456.1 199.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="456.1" cy="199.7" r="2.3" fill="#9A4A17"/>
+<path d="M456.1 199.7 L469.1 189.6" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="470.6" cy="199.7" r="2.3" fill="#9A4A17"/>
+<path d="M470.6 199.7 L477.8 199.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="201.4" font-size="20" font-weight="700" fill="#0E1726">Full on and full off</text>
+<text x="435.3" y="249.8" font-size="17" fill="#2B3442">Holds an output fully on or fully off</text>
+<text x="435.3" y="274.5" font-size="17" fill="#2B3442">with no PWM; a switch-off is never</text>
+<text x="435.3" y="299.1" font-size="17" fill="#2B3442">refused</text>
+<rect x="435.3" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="546.7" y="317.7" width="111.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="554.7" y="335.8" font-size="16" font-weight="700" fill="#334155">LED0_ON_L</text>
+<rect x="435.3" y="351.7" width="127.8" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="369.8" font-size="16" font-weight="700" fill="#334155">LED15_OFF_H</text>
+<circle cx="848.7" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M837.1 185.3 L860.2 185.3 L860.2 205.5 L837.1 205.5 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837.1 192.5 L860.2 192.5" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M837.1 199 L860.2 199" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M845.8 185.3 L845.8 205.5" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="201.4" font-size="20" font-weight="700" fill="#0E1726">All channels at once</text>
+<text x="820.7" y="249.8" font-size="17" fill="#2B3442">Switches every output off with one</text>
+<text x="820.7" y="274.5" font-size="17" fill="#2B3442">write, or changes a run of channels</text>
+<text x="820.7" y="299.1" font-size="17" fill="#2B3442">together in one transfer</text>
+<rect x="820.7" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="932" y="317.7" width="149.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="940" y="335.8" font-size="16" font-weight="700" fill="#334155">ALL_LED_OFF_H</text>
+<rect x="820.7" y="351.7" width="111.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="369.8" font-size="16" font-weight="700" fill="#334155">LED0_ON_L</text>
+<rect x="940" y="351.7" width="127.8" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="948" y="369.8" font-size="16" font-weight="700" fill="#334155">LED15_OFF_H</text>
+<circle cx="78" cy="465.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="78" cy="465.3" r="13" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M78 458.1 L78 465.3 L83.1 468.2" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="458.3" font-size="20" font-weight="700" fill="#0E1726">PWM frequency and</text>
+<text x="120" y="484.3" font-size="20" font-weight="700" fill="#0E1726">clock</text>
+<text x="50" y="519.8" font-size="17" fill="#2B3442">One frequency for all outputs, from</text>
+<text x="50" y="544.4" font-size="17" fill="#2B3442">the 25 MHz oscillator or an external</text>
+<text x="50" y="569.1" font-size="17" fill="#2B3442">clock up to 50 MHz</text>
+<rect x="50" y="587.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="605.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="161.4" y="587.6" width="112.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="169.4" y="605.8" font-size="16" font-weight="700" fill="#334155">PRE_SCALE</text>
+<rect x="282.1" y="587.6" width="74.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="290.1" y="605.8" font-size="16" font-weight="700" fill="#334155">MODE1</text>
+<circle cx="463.3" cy="465.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M450.3 465.3 L459 465.3" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M459 456.7 L459 474" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 456.7 L463.3 474" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 459.6 L474.9 459.6 L474.9 452.3" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 471.1 L474.9 471.1 L474.9 478.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="458.3" font-size="20" font-weight="700" fill="#0E1726">Output drive and</text>
+<text x="505.3" y="484.3" font-size="20" font-weight="700" fill="#0E1726">inversion</text>
+<text x="435.3" y="519.8" font-size="17" fill="#2B3442">Totem pole or open-drain outputs,</text>
+<text x="435.3" y="544.4" font-size="17" fill="#2B3442">optionally inverted, for direct LEDs or</text>
+<text x="435.3" y="569.1" font-size="17" fill="#2B3442">external drivers</text>
+<rect x="435.3" y="587.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="605.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="546.7" y="587.6" width="78.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="554.7" y="605.8" font-size="16" font-weight="700" fill="#334155">MODE2</text>
+<circle cx="848.7" cy="465.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="848.7" cy="465.3" r="13" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M843.6 460.3 L853.7 460.3 L853.7 470.4 L843.6 470.4 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="471.3" font-size="20" font-weight="700" fill="#0E1726">Output enable pin</text>
+<text x="820.7" y="519.8" font-size="17" fill="#2B3442">Switches every output to its off level</text>
+<text x="820.7" y="544.4" font-size="17" fill="#2B3442">at once through the OE pin, with no</text>
+<text x="820.7" y="569.1" font-size="17" fill="#2B3442">bus traffic</text>
+<rect x="820.7" y="587.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="605.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="932" y="587.6" width="78.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="940" y="605.8" font-size="16" font-weight="700" fill="#334155">MODE2</text>
+<circle cx="78" cy="701.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M80.9 689.7 A11.6 11.6 0 0 0 80.9 712.9" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80.9 712.9 A9.4 9.4 0 0 1 80.9 689.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="707.3" font-size="20" font-weight="700" fill="#0E1726">Sleep and restart</text>
+<text x="50" y="755.8" font-size="17" fill="#2B3442">Stops the oscillator to save power,</text>
+<text x="50" y="780.4" font-size="17" fill="#2B3442">then restarts the PWM where it</text>
+<text x="50" y="805" font-size="17" fill="#2B3442">stopped</text>
+<rect x="50" y="823.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="841.7" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="161.4" y="823.6" width="74.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="169.4" y="841.7" font-size="16" font-weight="700" fill="#334155">MODE1</text>
+<circle cx="463.3" cy="701.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M451.8 689.7 L463.3 689.7 L474.9 701.3 L463.3 712.9 L451.8 701.3 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="458.3" cy="696.2" r="2.3" fill="#9A4A17"/>
+<text x="505.3" y="707.3" font-size="20" font-weight="700" fill="#0E1726">Reset detection</text>
+<text x="435.3" y="755.8" font-size="17" fill="#2B3442">Starts from any state with every</text>
+<text x="435.3" y="780.4" font-size="17" fill="#2B3442">output off, and finds a power-on or</text>
+<text x="435.3" y="805" font-size="17" fill="#2B3442">software reset</text>
+<rect x="435.3" y="823.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="841.7" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="546.7" y="823.6" width="74.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="554.7" y="841.7" font-size="16" font-weight="700" fill="#334155">MODE1</text>
+<rect x="629.4" y="823.6" width="78.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="637.4" y="841.7" font-size="16" font-weight="700" fill="#334155">MODE2</text>
+<rect x="435.3" y="857.6" width="94.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="875.7" font-size="16" font-weight="700" fill="#334155">SUBADR1</text>
+<circle cx="848.7" cy="701.3" r="28" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M835.6 697 L842.9 697 L842.9 705.6 L835.6 705.6 Z" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M854.5 697 L861.7 697 L861.7 705.6 L854.5 705.6 Z" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M842.9 699.9 L854.5 699.9" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M842.9 702.7 L854.5 702.7" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="707.3" font-size="20" font-weight="700" fill="#0E1726">Group addresses</text>
+<text x="820.7" y="755.8" font-size="17" fill="#2B3442">LED All Call and three Sub Call</text>
+<text x="820.7" y="780.4" font-size="17" fill="#2B3442">addresses; the driver disables them</text>
+<text x="820.7" y="805" font-size="17" fill="#2B3442">so the chip answers its own only</text>
+<rect x="820.7" y="823.6" width="117.9" height="26" rx="13" fill="#334155"/>
+<text x="828.7" y="841.7" font-size="16" font-weight="700" fill="#FFFFFF">Not covered</text>
+<rect x="946.6" y="823.6" width="128.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="954.6" y="841.7" font-size="16" font-weight="700" fill="#334155">ALLCALLADR</text>
+<rect x="820.7" y="857.6" width="94.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="875.7" font-size="16" font-weight="700" fill="#334155">SUBADR1</text>
+<rect x="922.8" y="857.6" width="97.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="930.8" y="875.7" font-size="16" font-weight="700" fill="#334155">SUBADR2</text>
+<rect x="1028.2" y="857.6" width="97.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1036.2" y="875.7" font-size="16" font-weight="700" fill="#334155">SUBADR3</text>
+<rect x="32" y="917.6" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="54" y="932.2" font-size="16" fill="#566070">Supported: the driver covers it and a host test checks it</text>
+<rect x="522.3" y="917.6" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="544.3" y="932.2" font-size="16" fill="#566070">Not covered: the chip has it and the driver leaves it alone</text>
+</svg>
