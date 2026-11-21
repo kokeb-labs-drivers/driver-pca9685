@@ -39,5 +39,5 @@ own address.
 ## How these figures are made
 
 Each figure is a model in `docs/model/` (`i2c-timing.timing.yml` and `i2c-topology.topology.yml`) that cites the
-data sheet section and page of every number; `kokeb-docs figures` draws it and the build fails on a number without a
+datasheet section and page of every number; `kokeb-docs figures` draws it and the build fails on a number without a
 citation. The values table under the waveform is also written as `docs/diagrams/i2c-timing.table.html`.
