@@ -1,0 +1,32 @@
+---
+# Model of the figure 'i2c-topology'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Section 7.1 of the PCA9685 data sheet: six address pins give 64 addresses, 62 of them usable.
+kind: topology
+id: i2c-topology
+title: Several PCA9685 on one I2C bus
+kicker: Several devices
+alt: >-
+  An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address its pins A5 to
+  A0 select, with one pull-up resistor per line.
+reads: >-
+  The MCU on top and the PCA9685 controllers under it connect to the rails SCL and SDA on the right; the dashed card
+  stands for the controllers in between. The first PCA9685 answers at 0x40 and the last at 0x7F, and one pull-up per
+  line ties the bus to VDD.
+print: landscape
+sources:
+  - docs/model/i2c-topology.topology.yml
+style: bus
+refs:
+  addresses: {doc: pca9685, section: "7.1 Device addresses", page: 7}
+host: {label: MCU, detail: I2C controller}
+nodes:
+  - {label: PCA9685, address: "0x40, A5 to A0 low", ref: address}
+  - {more: true, label: "…", detail: one address per chip}
+  - {label: PCA9685, address: "0x7F, A5 to A0 high", ref: address}
+shared: [SCL, SDA]
+pullups: {label: pull-ups to VDD, ref: app}
+facts:
+  - {text: "Six address pins give 64 addresses; 62 remain once LED All Call and Software Reset are excluded",
+     ref: addresses}
+  - {text: "Every PCA9685 also answers LED All Call 0x70 from power-up; the driver clears MODE1.ALLCALL",
+     ref: allcall}

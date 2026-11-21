@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1600" viewBox="0 0 640 1600" role="img" aria-labelledby="i2c-timing-title i2c-timing-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="i2c-timing-title">I2C timing in Fast-mode Plus</title>
+<desc id="i2c-timing-desc">I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and stop times of the data sheet.</desc>
+<defs><marker id="i2c-timing-arrow-ink2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#D2DAE4"/></marker></defs>
+<rect x="0.5" y="0.5" width="639" height="1599" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" fill="#F8D27A">ON THE BUS</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" fill="#E8EDF3">I2C timing in Fast-mode Plus</text>
+<text x="32" y="102.7" font-size="15" fill="#9AA6B5">Datasheet: 13 Dynamic characteristics, Table 15, p. 40; 13 Dynamic</text>
+<text x="32" y="124.5" font-size="15" fill="#9AA6B5">characteristics, Figure 32 I2C-bus timing diagram, p. 42.</text>
+<rect x="32" y="140.4" width="576" height="1" fill="#252F3C"/>
+<path d="M88 250.8 L88 303" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M134.7 250.8 L134.7 303" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M181.5 250.8 L181.5 303" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M204.8 250.8 L204.8 303" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M204.8 250.8 L204.8 337.2" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M228.2 250.8 L228.2 337.2" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M134.7 367.2 L134.7 419.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M181.5 367.2 L181.5 419.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M228.2 367.2 L228.2 453.6" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M251.5 367.2 L251.5 453.6" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M415.1 367.2 L415.1 419.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M433.8 367.2 L433.8 419.4" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M485.2 367.2 L485.2 453.6" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M508.5 367.2 L508.5 453.6" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M88 232.8 L88 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M134.7 232.8 L134.7 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M181.5 232.8 L181.5 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M228.2 232.8 L228.2 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M274.9 232.8 L274.9 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M321.6 232.8 L321.6 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M368.4 232.8 L368.4 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M415.1 232.8 L415.1 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M461.8 232.8 L461.8 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M508.5 232.8 L508.5 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M555.3 232.8 L555.3 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M602 232.8 L602 453.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 499.8 L608 499.8" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 572.6 L608 572.6" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 645.5 L608 645.5" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 718.3 L608 718.3" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 791.2 L608 791.2" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 864 L608 864" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 936.9 L608 936.9" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1009.7 L608 1009.7" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1082.6 L608 1082.6" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1155.4 L608 1155.4" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1228.3 L608 1228.3" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1301.1 L608 1301.1" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1374 L608 1374" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M32 1446.8 L608 1446.8" fill="none" stroke="#252F3C" stroke-width="1"/>
+<path d="M135.7 223.8 L135.7 218.8 L180.5 218.8 L180.5 223.8" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+<path d="M182.5 191.6 L182.5 186.6 L273.9 186.6 L273.9 191.6" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+<path d="M322.6 223.8 L322.6 218.8 L414.1 218.8 L414.1 223.8" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+<path d="M416.1 191.6 L416.1 186.6 L460.8 186.6 L460.8 191.6" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+<path d="M509.5 223.8 L509.5 218.8 L554.3 218.8 L554.3 223.8" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+<path d="M88 237.8 L134.7 237.8 L181.5 237.8 L181.5 237.8 L181.5 263.9 L204.8 263.9 L204.8 263.9 L204.8 237.8 L228.2 237.8 L228.2 237.8 L228.2 263.9 L251.5 263.9 L251.5 263.9 L251.5 237.8 L274.9 237.8 L321.6 237.8 L321.6 237.8 L321.6 263.9 L345 263.9 L345 263.9 L345 237.8 L368.4 237.8 L368.4 237.8 L368.4 263.9 L391.7 263.9 L391.7 263.9 L391.7 237.8 L415.1 237.8 L415.1 237.8 L415.1 263.9 L438.5 263.9 L438.5 263.9 L438.5 237.8 L461.8 237.8 L461.8 237.8 L461.8 263.9 L485.2 263.9 L485.2 263.9 L485.2 237.8 L508.5 237.8 L555.3 237.8 L602 237.8" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M89 299 L133.7 299" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M182.5 299 L203.8 299" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M205.8 333.2 L227.2 333.2" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M88 354.2 L134.7 354.2 L134.7 354.2 L134.7 380.2 L181.5 380.2" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M181.5 380.2 L181.5 367.2" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M274.9 354.2 L321.6 354.2" fill="none" stroke="#D2DAE4" stroke-width="1.6"/>
+<path d="M274.9 380.2 L321.6 380.2" fill="none" stroke="#D2DAE4" stroke-width="1.6"/>
+<path d="M461.8 380.2 L508.5 380.2 L508.5 380.2 L508.5 354.2 L602 354.2" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M135.7 415.4 L180.5 415.4" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M229.2 449.6 L250.5 449.6" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M415.1 415.4 L433.8 415.4" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<path d="M415.1 411.4 L415.1 419.4" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<path d="M433.8 411.4 L433.8 419.4" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<path d="M486.2 449.6 L507.5 449.6" fill="none" stroke="#D2DAE4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#i2c-timing-arrow-ink2)" marker-start="url(#i2c-timing-arrow-ink2)"/>
+<path d="M181.5 367.2 L186.5 354.2 L223.2 354.2 L228.2 367.2 L223.2 380.2 L186.5 380.2 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M228.2 367.2 L233.2 354.2 L269.9 354.2 L274.9 367.2 L269.9 380.2 L233.2 380.2 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M321.6 367.2 L326.6 354.2 L363.4 354.2 L368.4 367.2 L363.4 380.2 L326.6 380.2 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M368.4 367.2 L373.4 354.2 L410.1 354.2 L415.1 367.2 L410.1 380.2 L373.4 380.2 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M415.1 367.2 L420.1 354.2 L456.8 354.2 L461.8 367.2 L456.8 380.2 L420.1 380.2 Z" fill="#13233A" stroke="#60A5FA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="32" y="1460.8" width="576" height="108.6" rx="10" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="158.1" y="207.9" font-size="14" font-weight="600" text-anchor="middle" fill="#E2E8F0">S</text>
+<text x="228.2" y="175.8" font-size="14" font-weight="600" text-anchor="middle" fill="#E2E8F0">address</text>
+<text x="368.4" y="207.9" font-size="14" font-weight="600" text-anchor="middle" fill="#E2E8F0">data</text>
+<text x="438.5" y="175.8" font-size="14" font-weight="600" text-anchor="middle" fill="#E2E8F0">ACK</text>
+<text x="531.9" y="207.9" font-size="14" font-weight="600" text-anchor="middle" fill="#E2E8F0">P</text>
+<text x="32" y="256.2" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SCL</text>
+<rect x="294.3" y="233.8" width="8" height="34" rx="0" fill="#0E131A"/>
+<path d="M291.3 266.9 L297.3 234.8" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<path d="M299.3 266.9 L305.3 234.8" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<text x="111.4" y="286.1" font-size="14" font-weight="700" text-anchor="middle" fill="#E8EDF3">tBUF</text>
+<text x="210.8" y="304.1" font-size="14" font-weight="700" fill="#E8EDF3">tLOW</text>
+<text x="234.2" y="338.3" font-size="14" font-weight="700" fill="#E8EDF3">tHIGH</text>
+<text x="32" y="372.6" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDA</text>
+<text x="204.8" y="372.3" font-size="14" font-weight="600" text-anchor="middle" fill="#BFDBFE">A7</text>
+<text x="251.5" y="372.3" font-size="14" font-weight="600" text-anchor="middle" fill="#BFDBFE">A6</text>
+<text x="345" y="372.3" font-size="14" font-weight="600" text-anchor="middle" fill="#BFDBFE">D1</text>
+<text x="391.7" y="372.3" font-size="14" font-weight="600" text-anchor="middle" fill="#BFDBFE">D0</text>
+<text x="438.5" y="372.3" font-size="14" font-weight="600" text-anchor="middle" fill="#BFDBFE">A</text>
+<rect x="294.3" y="350.2" width="8" height="34" rx="0" fill="#0E131A"/>
+<path d="M291.3 383.2 L297.3 351.2" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<path d="M299.3 383.2 L305.3 351.2" fill="none" stroke="#D2DAE4" stroke-width="1.4"/>
+<text x="187.5" y="420.5" font-size="14" font-weight="700" fill="#E8EDF3">tHD;STA</text>
+<text x="257.5" y="454.7" font-size="14" font-weight="700" fill="#E8EDF3">tSU;DAT</text>
+<text x="439.8" y="420.5" font-size="14" font-weight="700" fill="#E8EDF3">tVD;ACK</text>
+<text x="514.5" y="454.7" font-size="14" font-weight="700" fill="#E8EDF3">tSU;STO</text>
+<text x="32" y="484.1" font-size="17" font-weight="700" fill="#E8EDF3">Timing values</text>
+<text x="32" y="520.5" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">fSCL</text>
+<text x="608" y="520.5" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0 · max 1000 kHz</text>
+<text x="32" y="540.8" font-size="15" fill="#D2DAE4">SCL clock frequency</text>
+<text x="32" y="560.9" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="593.4" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tBUF</text>
+<text x="608" y="593.4" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.5 µs</text>
+<text x="32" y="613.6" font-size="15" fill="#D2DAE4">Bus free time between a STOP and a START condition</text>
+<text x="32" y="633.8" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="666.2" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tHD;STA</text>
+<text x="608" y="666.2" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.26 µs</text>
+<text x="32" y="686.5" font-size="15" fill="#D2DAE4">Hold time of a (repeated) START condition</text>
+<text x="32" y="706.6" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="739.1" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tLOW</text>
+<text x="608" y="739.1" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.5 µs</text>
+<text x="32" y="759.3" font-size="15" fill="#D2DAE4">LOW period of the SCL clock</text>
+<text x="32" y="779.5" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="811.9" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tHIGH</text>
+<text x="608" y="811.9" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.26 µs</text>
+<text x="32" y="832.2" font-size="15" fill="#D2DAE4">HIGH period of the SCL clock</text>
+<text x="32" y="852.3" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="884.8" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tSU;DAT</text>
+<text x="608" y="884.8" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 50 ns</text>
+<text x="32" y="905" font-size="15" fill="#D2DAE4">Data setup time</text>
+<text x="32" y="925.2" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="957.6" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tHD;DAT</text>
+<text x="608" y="957.6" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0 ns</text>
+<text x="32" y="977.9" font-size="15" fill="#D2DAE4">Data hold time</text>
+<text x="32" y="998" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1030.5" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tVD;ACK</text>
+<text x="608" y="1030.5" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.05 · max 0.45 µs</text>
+<text x="32" y="1050.7" font-size="15" fill="#D2DAE4">SCL LOW to the acknowledge valid on SDA</text>
+<text x="32" y="1070.9" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1103.3" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tVD;DAT</text>
+<text x="608" y="1103.3" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.05 · max 0.45 µs</text>
+<text x="32" y="1123.6" font-size="15" fill="#D2DAE4">SCL LOW to SDA data out valid</text>
+<text x="32" y="1143.7" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1176.2" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tSU;STO</text>
+<text x="608" y="1176.2" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">min 0.26 µs</text>
+<text x="32" y="1196.4" font-size="15" fill="#D2DAE4">Setup time of a STOP condition</text>
+<text x="32" y="1216.6" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1249" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tr</text>
+<text x="608" y="1249" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">max 120 ns</text>
+<text x="32" y="1269.3" font-size="15" fill="#D2DAE4">Rise time of SDA and SCL</text>
+<text x="32" y="1289.4" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1321.9" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tf</text>
+<text x="608" y="1321.9" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">max 120 ns</text>
+<text x="32" y="1342.1" font-size="15" fill="#D2DAE4">Fall time of SDA and SCL</text>
+<text x="32" y="1362.3" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="32" y="1394.7" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">tSP</text>
+<text x="608" y="1394.7" font-size="15" font-weight="700" text-anchor="end" fill="#E8EDF3">max 50 ns</text>
+<text x="32" y="1415" font-size="15" fill="#D2DAE4">Spikes the input filter suppresses</text>
+<text x="32" y="1435.1" font-size="14" fill="#9AA6B5">Datasheet 13 Dynamic characteristics, Table 15, p. 40</text>
+<text x="46" y="1489.2" font-size="17" font-weight="700" fill="#E2E8F0">Notes</text>
+<text x="46" y="1509.6" font-size="15" fill="#E2E8F0">The bus time-out resets the interface when SDA or SCL stays LOW for</text>
+<text x="46" y="1531.4" font-size="15" fill="#E2E8F0">25 ms. Standard-mode and Fast-mode values are in the other columns</text>
+<text x="46" y="1553.1" font-size="15" fill="#E2E8F0">of Table 15.</text>
+</svg>
