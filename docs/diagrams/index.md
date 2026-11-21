@@ -43,6 +43,34 @@ Drawn from:
 - [`docs/hardware.yml`](../hardware.yml)
 - [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
 
+## What the PCA9685 does
+
+<!-- figure: chip-capabilities -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-capabilities.dark.svg">
+  <img src="chip-capabilities.svg"
+    alt="Capability map of the PCA9685: PWM per channel (supported): Sets each output's duty and turn-on
+    delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds
+    an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once
+    (supported): Switches every output off with one write, or changes a run of channels together in one
+    transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz
+    oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or
+    open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin
+    (supported): Switches every output to its off level at once through the OE pin, with no bus traffic;
+    Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it
+    stopped; Reset detection (supported): Starts from any state with every output off, and finds a
+    power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call
+    addresses; the driver disables them so the chip answers its own only.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
+
 ## PCA9685: Typical application
 
 <!-- figure: chip-circuit-typical -->
@@ -52,6 +80,28 @@ Drawn from:
     alt="Schematic of the PCA9685 typical application: the chip with U2 MCU, R1 resistor 4.7 kΩ, R2 resistor
     4.7 kΩ, R3 resistor 10 kΩ, C1 capacitor 100 nF, R4 resistor 150 Ω, D1 led, J1 5 V supply; the MCU
     wires carry the port hooks GpioSet(CtrlPin::OutputEnable), Write() / WriteRead().">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
+
+## PCA9685
+
+<!-- figure: chip-hero -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-hero.dark.svg">
+  <img src="chip-hero.svg"
+    alt="Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all
+    at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external
+    driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x
+    12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink
+    per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus;
+    62 chips on one bus, from six address pins.">
 </picture>
 <!-- /figure -->
 
@@ -80,6 +130,25 @@ Drawn from:
 - [`docs/hardware.yml`](../hardware.yml)
 - [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
 
+## Wiring: Typical application
+
+<!-- figure: chip-wiring-typical -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-typical.dark.svg">
+  <img src="chip-wiring-typical.svg"
+    alt="Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU
+    I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)).
+    Supplies, grounds and the support parts are listed under the drawing.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
+
 ## The layers, one of them yours
 
 <!-- figure: driver-layers -->
@@ -98,6 +167,41 @@ Drawn from:
 
 - `public calls` in [`inc/pca9685.hpp`](../../inc/pca9685.hpp)
 - `I2cInterface` in [`inc/pca9685_i2c_interface.hpp`](../../inc/pca9685_i2c_interface.hpp)
+
+## I2C timing in Fast-mode Plus
+
+<!-- figure: i2c-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-timing.dark.svg">
+  <img src="i2c-timing.svg"
+    alt="I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last
+    data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and
+    stop times of the data sheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+## Several PCA9685 on one I2C bus
+
+<!-- figure: i2c-topology -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-topology.dark.svg">
+  <img src="i2c-topology.svg"
+    alt="An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address
+    its pins A5 to A0 select, with one pull-up resistor per line.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
 
 ## From the registers to the pin
 

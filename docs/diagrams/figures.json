@@ -23,12 +23,36 @@
       "inc/pca9685_i2c_interface.hpp"
     ]
   },
+  "chip-capabilities": {
+    "title": "What the PCA9685 does",
+    "alt": "Capability map of the PCA9685: PWM per channel (supported): Sets each output's duty and turn-on delay in 4096 steps, or a servo pulse width in microseconds; Full on and full off (supported): Holds an output fully on or fully off with no PWM; a switch-off is never refused; All channels at once (supported): Switches every output off with one write, or changes a run of channels together in one transfer; PWM frequency and clock (supported): One frequency for all outputs, from the 25 MHz oscillator or an external clock up to 50 MHz; Output drive and inversion (supported): Totem pole or open-drain outputs, optionally inverted, for direct LEDs or external drivers; Output enable pin (supported): Switches every output to its off level at once through the OE pin, with no bus traffic; Sleep and restart (supported): Stops the oscillator to save power, then restarts the PWM where it stopped; Reset detection (supported): Starts from any state with every output off, and finds a power-on or software reset; Group addresses (not covered): LED All Call and three Sub Call addresses; the driver disables them so the chip answers its own only.",
+    "description": "Each card is one function of the PCA9685: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pca9685_i2c_interface.hpp"
+    ]
+  },
   "chip-circuit-typical": {
     "title": "PCA9685: Typical application",
     "alt": "Schematic of the PCA9685 typical application: the chip with U2 MCU, R1 resistor 4.7 kΩ, R2 resistor 4.7 kΩ, R3 resistor 10 kΩ, C1 capacitor 100 nF, R4 resistor 150 Ω, D1 led, J1 5 V supply; the MCU wires carry the port hooks GpioSet(CtrlPin::OutputEnable), Write() / WriteRead().",
     "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
     "profile": "detail",
     "width": 1416,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pca9685_i2c_interface.hpp"
+    ]
+  },
+  "chip-hero": {
+    "title": "PCA9685",
+    "alt": "Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins.",
+    "description": "The PCA9685 in the middle, drawn as its TSSOP-28 package. On the left the MCU that runs the driver, joined to it by I2C. To the right, what the chip drives, in the order the power flows. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.",
+    "profile": "overview",
+    "width": 1200,
     "source": "docs/hardware.yml",
     "sources": [
       "docs/hardware.yml",
@@ -47,6 +71,18 @@
       "inc/pca9685_i2c_interface.hpp"
     ]
   },
+  "chip-wiring-typical": {
+    "title": "Wiring: Typical application",
+    "alt": "Wiring of the PCA9685 for the Typical application: MCU I2C SCL to SCL (Write() / WriteRead()); MCU I2C SDA to SDA (Write() / WriteRead()); MCU GPIO (OE) to OE (GpioSet(CtrlPin::OutputEnable)). Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the PCA9685 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pca9685_i2c_interface.hpp"
+    ]
+  },
   "driver-layers": {
     "title": "The layers, one of them yours",
     "alt": "Layer diagram: your application calls the PCA9685 core, which sends register reads and writes through the I2C port contract to the port class you write, which drives the chip; the core and the contract are the same on every MCU.",
@@ -58,6 +94,40 @@
       "inc/pca9685.hpp:public calls",
       "inc/pca9685_i2c_interface.hpp:I2cInterface"
     ]
+  },
+  "i2c-timing": {
+    "title": "I2C timing in Fast-mode Plus",
+    "alt": "I2C timing of the PCA9685 in Fast-mode Plus: the start condition, the first address bits, the last data bits, the acknowledge and the stop condition, with the bus free, start, clock, setup, valid and stop times of the data sheet.",
+    "description": "The two lanes are SCL and SDA, left to right in time. After the bus free time SDA falls while SCL is high (the start), bits A7 and A6 follow, each stable while SCL is high, the bits in between are left out, then D1, D0 and the acknowledge of the PCA9685, and SDA rises while SCL is high (the stop). The table gives each interval.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-timing.timing.yml",
+    "sources": [
+      "docs/model/i2c-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
+  },
+  "i2c-topology": {
+    "title": "Several PCA9685 on one I2C bus",
+    "alt": "An I2C bus on which an MCU and up to 62 PCA9685 controllers share SCL and SDA, each at the address its pins A5 to A0 select, with one pull-up resistor per line.",
+    "description": "The MCU on top and the PCA9685 controllers under it connect to the rails SCL and SDA on the right; the dashed card stands for the controllers in between. The first PCA9685 answers at 0x40 and the last at 0x7F, and one pull-up per line ties the bus to VDD.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-topology.topology.yml",
+    "sources": [
+      "docs/model/i2c-topology.topology.yml"
+    ],
+    "kind": "topology",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
   },
   "output-path": {
     "title": "From the registers to the pin",

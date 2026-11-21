@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="615" viewBox="0 0 1200 615" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-hero-title">PCA9685</title>
+<desc id="chip-hero-desc">Overview of the PCA9685, a 16-channel LED controller on I2C: each output has its own 12-bit PWM, all at one frequency from about 24 Hz to 1526 Hz, and drives an LED directly or the input of an external driver. A MCU talks to it over I2C; it drives LEDs or external drivers. Headline figures: 16 x 12-bit PWM outputs, 4096 steps each; 24 to 1526 Hz PWM frequency, one for all outputs; 25 mA sink per output at 5 V; 10 mA source; 2.3 to 5.5 V supply; 5.5 V tolerant I/O; 1 MHz I2C, Fast-mode Plus; 62 chips on one bus, from six address pins.</desc>
+<defs><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563EB"/></marker><marker id="fk-arrow-teal-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0B7A72"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="614" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">16-CHANNEL 12-BIT PWM CONTROLLER</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">PCA9685</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: 1, p. 1.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M246 262.4 L346 262.4" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-blue-strong)" marker-start="url(#fk-arrow-blue-strong)"/>
+<path d="M608 262.4 L660 262.4" fill="none" stroke="#0B7A72" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-teal-strong)"/>
+<rect x="350" y="183.3" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="202.2" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="221.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="240" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="258.9" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="277.8" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="296.7" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="315.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="350" y="334.5" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="183.3" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="202.2" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="221.1" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="240" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="258.9" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="277.8" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="296.7" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="315.6" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="592" y="334.5" width="12" height="7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.2"/>
+<rect x="362" y="157.4" width="230" height="210" rx="10" fill="#F5F7FA" stroke="#2B3442" stroke-width="2.2"/>
+<circle cx="382" cy="177.4" r="6" fill="#2B3442"/>
+<rect x="32" y="205.4" width="210" height="114" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="213.4" width="4" height="98" rx="2" fill="#2563EB"/>
+<rect x="664" y="192.4" width="260" height="140" rx="12" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="664" y="200.4" width="4" height="124" rx="2" fill="#0B7A72"/>
+<rect x="32" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="224" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="416" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="608" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="800" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="992" y="407.4" width="176" height="176.9" rx="12" fill="#F5F7FA" stroke="#C9D1DB" stroke-width="1"/>
+<text x="477" y="256.4" font-size="30" font-weight="700" text-anchor="middle" fill="#0E1726">PCA9685</text>
+<text x="477" y="286.4" font-size="17" text-anchor="middle" fill="#566070">TSSOP-28</text>
+<text x="477" y="310.4" font-size="16" text-anchor="middle" fill="#566070">28 pins</text>
+<text x="56" y="240.4" font-size="20" font-weight="700" fill="#1E429F">MCU</text>
+<text x="56" y="271" font-size="17" fill="#2B3442">your firmware and</text>
+<text x="56" y="295.7" font-size="17" fill="#2B3442">this driver</text>
+<rect x="276.2" y="250.4" width="39.5" height="24" rx="12" fill="#FFFFFF"/>
+<text x="296" y="268.2" font-size="16" font-weight="500" text-anchor="middle" fill="#566070">I2C</text>
+<text x="688" y="227.4" font-size="20" font-weight="700" fill="#0B5F59">LEDs or external</text>
+<text x="688" y="253.4" font-size="20" font-weight="700" fill="#0B5F59">drivers</text>
+<text x="688" y="284" font-size="17" fill="#2B3442">16 PWM outputs, totem</text>
+<text x="688" y="308.7" font-size="17" fill="#2B3442">pole or open drain</text>
+<text x="48" y="453" font-size="27" font-weight="700" fill="#0E1726">16 x 12-bit</text>
+<text x="48" y="485" font-size="17" fill="#2B3442">PWM outputs,</text>
+<text x="48" y="507.9" font-size="17" fill="#2B3442">4096 steps each</text>
+<text x="48" y="566.2" font-size="16" fill="#566070">1, p. 1</text>
+<text x="240" y="447.4" font-size="20" font-weight="700" fill="#0E1726">24 to 1526 Hz</text>
+<text x="240" y="485" font-size="17" fill="#2B3442">PWM frequency,</text>
+<text x="240" y="507.9" font-size="17" fill="#2B3442">one for all</text>
+<text x="240" y="530.9" font-size="17" fill="#2B3442">outputs</text>
+<text x="240" y="566.2" font-size="16" fill="#566070">1, p. 1</text>
+<text x="432" y="455.4" font-size="30" font-weight="700" fill="#0E1726">25 mA</text>
+<text x="432" y="485" font-size="17" fill="#2B3442">sink per output</text>
+<text x="432" y="507.9" font-size="17" fill="#2B3442">at 5 V; 10 mA</text>
+<text x="432" y="530.9" font-size="17" fill="#2B3442">source</text>
+<text x="432" y="566.2" font-size="16" fill="#566070">1, p. 1</text>
+<text x="624" y="450.6" font-size="24" font-weight="700" fill="#0E1726">2.3 to 5.5 V</text>
+<text x="624" y="485" font-size="17" fill="#2B3442">supply; 5.5 V</text>
+<text x="624" y="507.9" font-size="17" fill="#2B3442">tolerant I/O</text>
+<text x="624" y="566.2" font-size="16" fill="#566070">12, p. 38</text>
+<text x="816" y="455.4" font-size="30" font-weight="700" fill="#0E1726">1 MHz</text>
+<text x="816" y="485" font-size="17" fill="#2B3442">I2C, Fast-mode</text>
+<text x="816" y="507.9" font-size="17" fill="#2B3442">Plus</text>
+<text x="816" y="566.2" font-size="16" fill="#566070">2, p. 2</text>
+<text x="1008" y="455.4" font-size="30" font-weight="700" fill="#0E1726">62</text>
+<text x="1008" y="485" font-size="17" fill="#2B3442">chips on one</text>
+<text x="1008" y="507.9" font-size="17" fill="#2B3442">bus, from six</text>
+<text x="1008" y="530.9" font-size="17" fill="#2B3442">address pins</text>
+<text x="1008" y="566.2" font-size="16" fill="#566070">2, p. 2</text>
+</svg>
